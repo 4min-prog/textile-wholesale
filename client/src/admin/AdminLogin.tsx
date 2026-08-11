@@ -7,7 +7,6 @@ import LanguageSwitcher from '../components/LanguageSwitcher'
 export default function AdminLogin() {
   const { t } = useTranslation()
   const navigate = useNavigate()
-  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
@@ -23,7 +22,7 @@ export default function AdminLogin() {
     try {
       const res = await api<{ token: string }>('/auth/login', {
         method: 'POST',
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ password }),
       })
       setToken(res.token)
       navigate('/admin', { replace: true })
@@ -56,19 +55,6 @@ export default function AdminLogin() {
           </div>
         )}
         <form onSubmit={onSubmit} className="mt-6 space-y-5">
-          <div>
-            <label htmlFor="a-email" className="label">
-              {t('admin.email')}
-            </label>
-            <input
-              id="a-email"
-              type="email"
-              autoComplete="username"
-              className="input"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
           <div>
             <label htmlFor="a-pass" className="label">
               {t('admin.password')}

@@ -7,13 +7,13 @@ const router = Router()
 
 router.post('/login', async (req, res, next) => {
   try {
-    const { email, password } = req.body
-    if (!email || !password) {
-      return res.status(400).json({ error: 'Email and password are required' })
+    const { password } = req.body
+    if (!password) {
+      return res.status(400).json({ error: 'Password is required' })
     }
-    const admin = await prisma.admin.findUnique({ where: { email: String(email).toLowerCase() } })
+    const admin = await prisma.admin.findFirst()
     if (!admin || !bcrypt.compareSync(password, admin.password)) {
-      return res.status(401).json({ error: 'Invalid email or password' })
+      return res.status(401).json({ error: 'Invalid password' })
     }
     res.json({ token: sign(admin), admin: { id: admin.id, email: admin.email } })
   } catch (e) {
