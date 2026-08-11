@@ -8,6 +8,7 @@
     "dev:server": "node server/index.js",
     "dev:client": "vite",
     "build": "tsc && vite build",
+    "postinstall": "prisma generate",
     "preview": "vite preview",
     "migrate": "prisma migrate dev",
     "seed": "node prisma/seed.js",
