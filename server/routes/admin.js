@@ -8,6 +8,19 @@ const { uploadBuffer } = require('../lib/storage')
 const router = Router()
 router.use(auth)
 
+router.get('/me', async (req, res, next) => {
+  try {
+    const admin = await prisma.admin.findUnique({
+      where: { id: req.adminId },
+      select: { id: true, email: true },
+    })
+    if (!admin) return res.status(401).json({ error: 'Unauthorized' })
+    res.json(admin)
+  } catch (e) {
+    next(e)
+  }
+})
+
 function requireFields(obj, fields) {
   for (const f of fields) {
     if (obj[f] === undefined || obj[f] === null || obj[f] === '') return false
