@@ -1,7 +1,9 @@
 const { Router } = require('express')
+const path = require('path')
 const prisma = require('../lib/prisma')
 const { auth } = require('../lib/auth')
 const upload = require('../lib/upload')
+const { uploadBuffer } = require('../lib/storage')
 
 const router = Router()
 router.use(auth)
@@ -26,9 +28,16 @@ function parseImages(images) {
 }
 
 // ---------- File upload ----------
-router.post('/upload', upload.single('image'), (req, res) => {
+router.post('/upload', upload.single('image'), async (req, res, next) => {
   if (!req.file) return res.status(400).json({ error: 'No file uploaded' })
-  res.json({ url: `/uploads/${req.file.filename}` })
+  try {
+    const ext = path.extname(req.file.originalname).toLowerCase() || '.jpg'
+    const filePath = `images/${Date.now()}-${Math.round(Math.random() * 1e9)}${ext}`
+    const url = await uploadBuffer(req.file.buffer, filePath, req.file.mimetype)
+    res.json({ url })
+  } catch (e) {
+    next(e)
+  }
 })
 
 // ---------- Messages ----------
