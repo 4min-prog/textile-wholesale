@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-cream font-sans text-ink antialiased;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    @apply font-serif text-navy;
+  }
+  [dir='rtl'] h1,
+  [dir='rtl'] h2,
+  [dir='rtl'] h3,
+  [dir='rtl'] h4,
+  [dir='rtl'] h5 {
+    font-family: 'Amiri', 'Playfair Display', Georgia, serif;
+  }
+  [dir='rtl'] body {
+    font-family: Inter, 'Segoe UI', Tahoma, 'Noto Naskh Arabic', sans-serif;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex cursor-pointer select-none items-center justify-center gap-2 rounded-none px-8 py-3 text-sm font-semibold uppercase tracking-widest transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-gold {
+    @apply bg-gold text-navy hover:bg-gold-dark;
+  }
+  .btn-navy {
+    @apply bg-navy text-white hover:bg-navy-light;
+  }
+  .btn-outline-gold {
+    @apply border border-gold text-gold hover:bg-gold hover:text-navy;
+  }
+  .btn-outline-white {
+    @apply border border-white/40 text-white hover:border-gold hover:text-gold;
+  }
+  .btn-danger {
+    @apply bg-red-600/10 text-red-700 hover:bg-red-600 hover:text-white;
+  }
+  .btn-sm {
+    @apply px-4 py-2 text-xs;
+  }
+  .input {
+    @apply w-full rounded-none border border-cream-dark bg-white px-4 py-2.5 text-sm text-ink placeholder:text-ink/35 focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold/40;
+  }
+  .label {
+    @apply mb-1.5 block text-xs font-semibold uppercase tracking-widest text-navy/55;
+  }
+  .card {
+    @apply border border-cream-dark bg-white;
+  }
+  .admin-table {
+    @apply w-full text-sm;
+  }
+  .admin-table thead th {
+    @apply border-b border-cream-dark px-4 py-3 text-start text-xs font-semibold uppercase tracking-widest text-navy/50;
+  }
+  .admin-table tbody td {
+    @apply border-b border-cream-dark px-4 py-3 align-middle;
+  }
+  .admin-table tbody tr:nth-child(odd) {
+    @apply bg-cream/70;
+  }
+  .admin-table tbody tr:nth-child(even) {
+    @apply bg-white;
+  }
+  .badge {
+    @apply inline-flex items-center rounded-none px-2 py-0.5 text-[11px] font-semibold uppercase tracking-widest;
+  }
+  .badge-green {
+    @apply bg-emerald-600/10 text-emerald-700;
+  }
+  .badge-gray {
+    @apply bg-ink/10 text-ink/60;
+  }
+  .badge-gold {
+    @apply bg-gold/15 text-gold-dark;
+  }
+  .badge-red {
+    @apply bg-red-600/10 text-red-700;
+  }
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-wider-x text-gold;
+  }
+}

@@ -1,0 +1,69 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = env("DATABASE_URL")
+}
+
+model Category {
+  id       Int       @id @default(autoincrement())
+  name_tr  String
+  name_en  String
+  name_ar  String
+  slug     String    @unique
+  products Product[]
+}
+
+model Product {
+  id         Int      @id @default(autoincrement())
+  name_tr    String
+  name_en    String
+  name_ar    String
+  desc_tr    String
+  desc_en    String
+  desc_ar    String
+  price      Float
+  min_order  Int
+  images     String
+  is_active  Boolean  @default(true)
+  category   Category @relation(fields: [categoryId], references: [id])
+  categoryId Int
+  created_at DateTime @default(now())
+
+  @@index([categoryId])
+}
+
+model Banner {
+  id        Int     @id @default(autoincrement())
+  image_url String
+  title_tr  String
+  title_en  String
+  title_ar  String
+  is_active Boolean @default(true)
+}
+
+model Message {
+  id         Int      @id @default(autoincrement())
+  name       String
+  email      String
+  phone      String
+  message    String
+  is_read    Boolean  @default(false)
+  created_at DateTime @default(now())
+}
+
+model Page {
+  id         Int    @id @default(autoincrement())
+  slug       String @unique
+  content_tr String
+  content_en String
+  content_ar String
+}
+
+model Admin {
+  id       Int    @id @default(autoincrement())
+  email    String @unique
+  password String
+}

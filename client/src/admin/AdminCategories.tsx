@@ -1,0 +1,223 @@
+import { useEffect, useState, type FormEvent } from 'react'
+import { useTranslation } from 'react-i18next'
+import { api } from '../api'
+import type { Category } from '../types'
+import Spinner from '../components/Spinner'
+import { EditIcon, TrashIcon, CloseIcon } from '../components/Icons'
+import { slugify } from '../utils'
+
+interface FormState {
+  name_tr: string
+  name_en: string
+  name_ar: string
+  slug: string
+}
+
+function CategoryForm({
+  category,
+  onClose,
+  onSaved,
+}: {
+  category: Category | null
+  onClose: () => void
+  onSaved: () => void
+}) {
+  const { t } = useTranslation()
+  const [form, setForm] = useState<FormState>(() =>
+    category
+      ? { name_tr: category.name_tr, name_en: category.name_en, name_ar: category.name_ar, slug: category.slug }
+      : { name_tr: '', name_en: '', name_ar: '', slug: '' }
+  )
+  const [slugTouched, setSlugTouched] = useState(!!category)
+  const [error, setError] = useState('')
+  const [saving, setSaving] = useState(false)
+
+  const set = <K extends keyof FormState>(key: K) => (value: FormState[K]) =>
+    setForm((f) => ({ ...f, [key]: value }))
+
+  const onNameEn = (v: string) => {
+    setForm((f) => ({
+      ...f,
+      name_en: v,
+      slug: slugTouched ? f.slug : slugify(v),
+    }))
+  }
+
+  const onSubmit = async (e: FormEvent) => {
+    e.preventDefault()
+    setError('')
+    if (!form.name_en.trim() || !form.name_ar.trim() || !form.name_tr.trim() || !form.slug.trim()) {
+      setError(t('admin.required'))
+      return
+    }
+    setSaving(true)
+    try {
+      if (category)
+        await api(`/admin/categories/${category.id}`, { method: 'PUT', body: JSON.stringify(form) })
+      else await api('/admin/categories', { method: 'POST', body: JSON.stringify(form) })
+      onSaved()
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Error')
+    } finally {
+      setSaving(false)
+    }
+  }
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-navy/60 p-4">
+      <div className="max-h-[92vh] w-full max-w-lg overflow-y-auto bg-white p-6 md:p-8">
+        <div className="flex items-center justify-between">
+          <h2 className="text-xl">{category ? t('admin.editCategory') : t('admin.addCategory')}</h2>
+          <button type="button" onClick={onClose} className="text-ink/50 hover:text-navy" aria-label="Close">
+            <CloseIcon className="h-5 w-5" />
+          </button>
+        </div>
+
+        {error && (
+          <div className="mt-4 border border-red-600/30 bg-red-600/10 px-4 py-3 text-sm text-red-700">
+            {error}
+          </div>
+        )}
+
+        <form onSubmit={onSubmit} className="mt-6 space-y-5">
+          <div>
+            <label className="label">{t('admin.nameTr')}</label>
+            <input className="input" value={form.name_tr} onChange={(e) => set('name_tr')(e.target.value)} />
+          </div>
+          <div>
+            <label className="label">{t('admin.nameEn')}</label>
+            <input className="input" value={form.name_en} onChange={(e) => onNameEn(e.target.value)} />
+          </div>
+          <div>
+            <label className="label">{t('admin.nameAr')}</label>
+            <input className="input" value={form.name_ar} onChange={(e) => set('name_ar')(e.target.value)} />
+          </div>
+          <div>
+            <label className="label">{t('admin.slug')}</label>
+            <input
+              className="input"
+              value={form.slug}
+              onChange={(e) => {
+                setSlugTouched(true)
+                set('slug')(e.target.value)
+              }}
+            />
+          </div>
+          <div className="flex justify-end gap-3 border-t border-cream-dark pt-5">
+            <button type="button" onClick={onClose} className="btn btn-outline-gold">
+              {t('admin.cancel')}
+            </button>
+            <button type="submit" disabled={saving} className="btn-gold">
+              {saving ? t('admin.saving') : t('admin.save')}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  )
+}
+
+export default function AdminCategories() {
+  const { t, i18n } = useTranslation()
+  const lng = i18n.language
+  const [categories, setCategories] = useState<Category[]>([])
+  const [loading, setLoading] = useState(true)
+  const [open, setOpen] = useState(false)
+  const [editing, setEditing] = useState<Category | null>(null)
+
+  const load = () => {
+    setLoading(true)
+    api<Category[]>('/admin/categories')
+      .then(setCategories)
+      .catch(() => setCategories([]))
+      .finally(() => setLoading(false))
+  }
+
+  useEffect(load, [])
+
+  const remove = async (c: Category) => {
+    if (!window.confirm(t('admin.confirmDelete'))) return
+    try {
+      await api(`/admin/categories/${c.id}`, { method: 'DELETE' })
+      load()
+    } catch (err) {
+      window.alert(err instanceof Error ? err.message : 'Error')
+    }
+  }
+
+  return (
+    <div>
+      <div className="flex flex-wrap items-center justify-between gap-4">
+        <h1 className="text-2xl md:text-3xl">{t('admin.categoriesTitle')}</h1>
+        <button
+          type="button"
+          className="btn-gold"
+          onClick={() => {
+            setEditing(null)
+            setOpen(true)
+          }}
+        >
+          {t('admin.addCategory')}
+        </button>
+      </div>
+
+      {loading ? (
+        <Spinner />
+      ) : (
+        <div className="mt-8 border border-cream-dark bg-white">
+          <div className="overflow-x-auto">
+            <table className="admin-table">
+              <thead>
+                <tr>
+                  <th>{t('admin.nameEn')}</th>
+                  <th>{t('admin.slug')}</th>
+                  <th>{t('admin.productsCount')}</th>
+                  <th>{t('admin.actions')}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {categories.map((c) => (
+                  <tr key={c.id}>
+                    <td className="font-medium text-navy">{c[`name_${lng}` as keyof Pick<Category, 'name_tr' | 'name_en' | 'name_ar'>]}</td>
+                    <td className="text-ink/50">/{c.slug}</td>
+                    <td className="text-ink/60">{c._count?.products ?? 0}</td>
+                    <td>
+                      <div className="flex gap-2">
+                        <button
+                          type="button"
+                          className="btn btn-navy btn-sm"
+                          onClick={() => {
+                            setEditing(c)
+                            setOpen(true)
+                          }}
+                        >
+                          <EditIcon className="h-3.5 w-3.5" />
+                          {t('admin.edit')}
+                        </button>
+                        <button type="button" className="btn btn-danger btn-sm" onClick={() => remove(c)}>
+                          <TrashIcon className="h-3.5 w-3.5" />
+                          {t('admin.delete')}
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+
+      {open && (
+        <CategoryForm
+          category={editing}
+          onClose={() => setOpen(false)}
+          onSaved={() => {
+            setOpen(false)
+            load()
+          }}
+        />
+      )}
+    </div>
+  )
+}

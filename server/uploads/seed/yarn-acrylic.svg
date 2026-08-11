@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" viewBox="0 0 800 800">
+  <rect width="800" height="800" fill="#1A1A2E"/>
+  <defs>
+    <pattern id="weave" width="90" height="30" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="15" x2="90" y2="15" stroke="#C9A84C" stroke-width="2" opacity="0.14"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="800" fill="url(#weave)"/>
+  <rect x="32" y="32" width="736" height="736" fill="none" stroke="#C9A84C" stroke-opacity="0.5" stroke-width="2"/>
+  <text x="400" y="376" text-anchor="middle" font-family="Georgia, serif" font-size="46" fill="#F8F5F0" letter-spacing="8">ATLAS</text>
+  <text x="400" y="428" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#C9A84C" letter-spacing="6">ACRYLIC YARN</text>
+  <text x="400" y="464" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#F8F5F0" opacity="0.6" letter-spacing="4">100% ACRYLIC</text>
+</svg>
