@@ -7,7 +7,7 @@ Full-stack B2B wholesale textile website with a multilingual storefront
 
 - **Client:** React + TypeScript + Vite, Tailwind CSS, React Router v6, i18next
 - **Server:** Node.js + Express
-- **Database:** PostgreSQL with Prisma ORM
+- **Database:** Supabase (PostgreSQL) with Prisma ORM
 - **Auth:** JWT (admin login)
 - **Uploads:** Multer (product / banner images)
 
@@ -18,10 +18,11 @@ Full-stack B2B wholesale textile website with a multilingual storefront
 npm install
 
 # 2. Configure environment
-#    Edit .env and point DATABASE_URL at your PostgreSQL instance
+#    Edit .env and point DATABASE_URL at your Supabase database
+#    (DIRECT_URL is used by Prisma migrations / db push)
 
 # 3. Create the database schema + seed sample data
-npm run db:setup        # runs `prisma migrate dev` then the seed
+npm run db:setup        # runs `prisma db push` then the seed
 
 # 4. Run both server (port 3001) and client (port 5173)
 npm run dev
@@ -55,7 +56,7 @@ textile-wholesale/
 │       └── locales/      # i18n dictionaries (tr/en/ar)
 ├── server/          # Express backend (routes, auth, uploads)
 ├── prisma/          # schema.prisma + seed.js
-└── .env             # DATABASE_URL, JWT_SECRET, PORT
+└── .env             # DATABASE_URL, DIRECT_URL, JWT_SECRET, PORT
 ```
 
 ## Notes
