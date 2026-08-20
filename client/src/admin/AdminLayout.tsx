@@ -3,6 +3,7 @@ import { NavLink, Outlet, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { api, clearToken } from '../api'
 import { BoxIcon, TagsIcon, ImageIcon, FileIcon, MailIcon, LogOutIcon, MenuIcon, CloseIcon } from '../components/Icons'
+import LanguageSwitcher from '../components/LanguageSwitcher'
 import type { Admin } from '../types'
 
 function DashboardIcon({ className }: { className?: string }) {
@@ -95,6 +96,9 @@ export default function AdminLayout() {
         </nav>
 
         <div className="border-t border-white/10 px-6 py-4 sm:py-5">
+          <div className="mb-4">
+            <LanguageSwitcher />
+          </div>
           {admin && (
             <div className="mb-3 truncate text-xs text-white/40">{admin.email}</div>
           )}
@@ -115,9 +119,12 @@ export default function AdminLayout() {
           <span className="font-serif text-base text-text">
             ALACA <span className="text-gold">Admin</span>
           </span>
-          <button type="button" onClick={() => setOpen(!open)} className="text-text" aria-label="Menu">
-            {open ? <CloseIcon className="h-6 w-6" /> : <MenuIcon className="h-6 w-6" />}
-          </button>
+          <div className="flex items-center gap-3">
+            <LanguageSwitcher />
+            <button type="button" onClick={() => setOpen(!open)} className="text-text" aria-label="Menu">
+              {open ? <CloseIcon className="h-6 w-6" /> : <MenuIcon className="h-6 w-6" />}
+            </button>
+          </div>
         </header>
 
         <main className="p-4 sm:p-5 md:p-8 lg:p-10">
