@@ -40,7 +40,7 @@ export default function AdminLogin() {
           <span className="font-serif text-gold">A</span>
         </div>
         <div>
-          <div className="font-serif text-xl text-white sm:text-2xl">ALACA TEKSTİTİL</div>
+          <div className="font-serif text-xl text-white sm:text-2xl">ALACA TEXTILES</div>
           <div className="mt-1 text-[10px] font-semibold uppercase tracking-widest text-gold">
             Admin
           </div>

@@ -32,7 +32,7 @@ export default function Footer() {
             <div className="leading-none">
               <div className="font-serif text-base text-white">ALACA</div>
               <div className="mt-1 text-[9px] font-semibold uppercase tracking-widest text-gold">
-                TEKSTİTİL
+                TEXTILES
               </div>
             </div>
           </div>

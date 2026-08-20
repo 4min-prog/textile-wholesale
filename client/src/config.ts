@@ -1,7 +1,7 @@
 export const WHATSAPP_NUMBER = '905357398364'
 
 export const COMPANY = {
-  name: 'ALACA TEKSİTİL',
+  name: 'ALACA TEXTILES',
   phone: '+90 535 739 83 64',
   phoneHref: 'tel:+905357398364',
   email: 'info@alacateksitil.com',

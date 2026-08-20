@@ -172,7 +172,7 @@ export default function Contact() {
       <section className="px-4 pb-16 sm:px-6 sm:pb-20 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <iframe
-            title="ALACA TEKSTİTİL location"
+            title="ALACA TEXTILES location"
             src="https://www.google.com/maps?q=Gaziantep+Turkey&output=embed"
             className="h-72 w-full border border-white/10 bg-card sm:h-80"
             loading="lazy"

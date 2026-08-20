@@ -48,7 +48,7 @@ export default function Navbar() {
           <div className="leading-none">
             <div className="font-serif text-lg text-white sm:text-xl">ALACA</div>
             <div className="mt-1 text-[9px] font-semibold uppercase tracking-widest text-gold sm:text-[10px]">
-              TEKSTİTİL
+              TEXTILES
             </div>
           </div>
         </Link>

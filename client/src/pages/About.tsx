@@ -67,7 +67,7 @@ export default function About() {
                 <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl border border-white/10 bg-card p-3">
                   <img
                     src="/uploads/seed/banner-weave.svg"
-                    alt="ALACA TEKSTİTİL"
+                    alt="ALACA TEXTILES"
                     className="h-full w-full object-cover"
                   />
                 </div>
