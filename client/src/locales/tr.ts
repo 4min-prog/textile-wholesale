@@ -22,9 +22,9 @@ export default {
   },
   home: {
     heroEyebrow: 'Toptan Tekstil Tedarikçisi',
-    heroTitle: 'Ciddi İşler İçin Kumaş ve İplik',
+    heroTitle: 'Kumaş ve İplik Tedarikçiniz',
     heroSub:
-      '1998’den bu yana giyim üreticilerine ve toptancılara fabrika direkt pamuklu, keten ve teknik kumaşlar sağlıyoruz — toptan fiyat, güvenilir teslim süreleri.',
+      'Alaca Tekstil olarak pamuklu, keten ve teknik kumaşlar ile toptan iplik tedariki sağlıyoruz. Kaliteli ürün, uygun fiyat ve güvenilir teslimat.',
     heroCtaPrimary: 'Ürünleri Keşfet',
     heroCtaSecondary: 'Satışla Görüş',
     featured: 'Öne Çıkan Ürünler',
@@ -33,13 +33,13 @@ export default {
     categoriesTitle: 'Ürün Kategorileri',
     categoriesSub: 'Üç odaklı ürün hattı, tek kalite standardı',
     aboutEyebrow: 'Biz kimiz',
-    aboutTitle: 'Küresel erişime sahip aile şirketi',
+    aboutTitle: 'Kaliteye Dikilen İmza',
     aboutText:
-      'Atlas Tekstil 25 yılı aşkın süredir kumaş üretiyor ve ticareti yapıyor. İstanbul depomuzdan Avrupa, Orta Doğu ve Kuzey Afrika’daki üreticilere hizmet veriyoruz — derin stok, dürüst fiyat, zamanında teslimat.',
+      'Alaca Tekstil, Gaziantep merkezli bir aile şirketidir. Yıllardır Avrupa, Orta Doğu ve Kuzey Afrika\'daki üretici ve toptancılara kumaş ve iplik sağlıyoruz.',
     aboutCta: 'Hakkımızda',
     ctaTitle: 'Toptan sipariş vermeye hazır mısınız?',
     ctaText: 'İhtiyaç listenizi WhatsApp üzerinden gönderin, 24 saat içinde fiyat teklifi alın.',
-    ctaButton: 'WhatsApp’tan Yazın',
+    ctaButton: 'WhatsApp\'tan Yazın',
   },
   products: {
     title: 'Ürünler',
@@ -65,8 +65,8 @@ export default {
     inStock: 'ürün',
   },
   about: {
-    title: 'Atlas Tekstil Hakkında',
-    subtitle: 'Çeyrek asırlık kumaş, dürüstlük ve teslimat',
+    title: 'Alaca Tekstil Hakkında',
+    subtitle: 'Kaliteye Dikilen İmza',
     yearsLabel: 'Yıllık tecrübe',
     clientsLabel: 'Aktif müşteri',
     countriesLabel: 'Hizmet verilen ülke',
@@ -91,7 +91,7 @@ export default {
     office: 'Ofis ve depo',
   },
   footer: {
-    blurb: '1998’den beri İstanbul’dan dünyaya toptan kumaş, iplik ve tekstil malzemeleri.',
+    blurb: 'Toptan kumaş, iplik ve tekstil malzemeleri. Kaliteye dikilen imza.',
     quickLinks: 'Hızlı Bağlantılar',
     categories: 'Kategoriler',
     contact: 'İletişim',
@@ -110,7 +110,7 @@ export default {
     email: 'E-posta',
     password: 'Şifre',
     signIn: 'Giriş Yap',
-    invalid: 'Geçersiz e-posta veya şifre.',
+    invalid: 'Geçersiz şifre.',
     dashboard: 'Panel',
     products: 'Ürünler',
     categories: 'Kategoriler',

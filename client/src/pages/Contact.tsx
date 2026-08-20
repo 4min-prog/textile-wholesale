@@ -51,41 +51,41 @@ export default function Contact() {
 
   return (
     <div>
-      <section className="bg-navy">
-        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <section className="bg-card">
+        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
           <div className="flex items-center gap-3">
-            <span className="h-px w-10 bg-gold" />
-            <span className="eyebrow">Atlas</span>
+            <span className="h-px w-10 bg-gold/60" />
+            <span className="eyebrow">ALACA</span>
           </div>
-          <h1 className="mt-5 text-4xl text-white md:text-5xl">{t('contact.title')}</h1>
-          <p className="mt-4 text-white/60">{t('contact.subtitle')}</p>
+          <h1 className="mt-5 text-3xl text-gold sm:text-4xl md:text-5xl">{t('contact.title')}</h1>
+          <p className="mt-4 text-text-dim">{t('contact.subtitle')}</p>
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="grid gap-14 lg:grid-cols-5">
+      <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+        <div className="grid gap-10 lg:grid-cols-5 lg:gap-14">
           {/* Info */}
           <div className="lg:col-span-2">
-            <h2 className="text-2xl">{t('contact.office')}</h2>
-            <ul className="mt-8 space-y-5">
+            <h2 className="text-xl text-gold sm:text-2xl">{t('contact.office')}</h2>
+            <ul className="mt-6 space-y-5 sm:mt-8">
               {info.map((item) => (
                 <li key={item.label} className="flex flex-col">
-                  <span className="text-xs font-semibold uppercase tracking-widest text-ink/40">
+                  <span className="text-xs font-semibold uppercase tracking-widest text-text-dim/50">
                     {item.label}
                   </span>
                   {item.href ? (
                     <a
                       href={item.href}
                       {...(item.external ? { target: '_blank', rel: 'noreferrer' } : {})}
-                      className="mt-1 inline-flex items-center gap-2 font-medium text-navy hover:text-gold-dark"
+                      className="mt-1 inline-flex items-center gap-2 font-medium text-text hover:text-gold"
                     >
                       {item.label === t('contact.whatsapp') && (
-                        <WhatsIcon className="h-4 w-4 text-gold-dark" />
+                        <WhatsIcon className="h-4 w-4 text-gold" />
                       )}
                       {item.value}
                     </a>
                   ) : (
-                    <span className="mt-1 font-medium text-navy">{item.value}</span>
+                    <span className="mt-1 font-medium text-text">{item.value}</span>
                   )}
                 </li>
               ))}
@@ -94,22 +94,22 @@ export default function Contact() {
 
           {/* Form */}
           <div className="lg:col-span-3">
-            <div className="border border-cream-dark bg-white p-8 md:p-10">
-              <h2 className="text-2xl">{t('contact.formTitle')}</h2>
+            <div className="border border-white/10 bg-card p-6 sm:p-8 md:p-10">
+              <h2 className="text-xl text-gold sm:text-2xl">{t('contact.formTitle')}</h2>
 
               {success && (
-                <div className="mt-6 border border-emerald-600/30 bg-emerald-600/10 px-4 py-3 text-sm text-emerald-800">
+                <div className="mt-6 border border-emerald-600/30 bg-emerald-600/10 px-4 py-3 text-sm text-emerald-400">
                   {t('contact.success')}
                 </div>
               )}
               {error && (
-                <div className="mt-6 border border-red-600/30 bg-red-600/10 px-4 py-3 text-sm text-red-700">
+                <div className="mt-6 border border-red-600/30 bg-red-600/10 px-4 py-3 text-sm text-red-400">
                   {error}
                 </div>
               )}
 
-              <form onSubmit={onSubmit} className="mt-8 grid gap-6">
-                <div className="grid gap-6 sm:grid-cols-2">
+              <form onSubmit={onSubmit} className="mt-6 grid gap-5 sm:mt-8">
+                <div className="grid gap-5 sm:grid-cols-2">
                   <div>
                     <label htmlFor="c-name" className="label">
                       {t('contact.name')}
@@ -152,7 +152,7 @@ export default function Contact() {
                   </label>
                   <textarea
                     id="c-message"
-                    rows={6}
+                    rows={5}
                     className="input resize-y"
                     value={form.message}
                     onChange={set('message')}
@@ -169,12 +169,12 @@ export default function Contact() {
         </div>
       </section>
 
-      <section className="px-4 pb-20 sm:px-6 lg:px-8">
+      <section className="px-4 pb-16 sm:px-6 sm:pb-20 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <iframe
-            title="Atlas Textile location"
-            src="https://www.google.com/maps?q=Kuyumcukent%20Merter%20Istanbul&output=embed"
-            className="h-80 w-full border border-cream-dark bg-white"
+            title="ALACA TEKSTİTİL location"
+            src="https://www.google.com/maps?q=Gaziantep+Turkey&output=embed"
+            className="h-72 w-full border border-white/10 bg-card sm:h-80"
             loading="lazy"
           />
         </div>

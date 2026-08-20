@@ -4,15 +4,16 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        navy: '#1A1A2E',
-        'navy-light': '#23233C',
-        'navy-dark': '#12121F',
+        navy: '#0A0E1A',
+        'navy-light': '#0F1322',
+        'navy-dark': '#060912',
         gold: '#C9A84C',
         'gold-dark': '#B3923A',
         'gold-light': '#DCC476',
-        cream: '#F8F5F0',
-        'cream-dark': '#E7E1D7',
-        ink: '#2D2D2D',
+        card: '#141927',
+        'card-light': '#1A2033',
+        text: '#F5F5F5',
+        'text-dim': '#A0A8B8',
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
@@ -23,7 +24,7 @@ module.exports = {
         'wider-x': '0.28em',
       },
       boxShadow: {
-        lift: '0 8px 28px rgba(26, 26, 46, 0.10)',
+        lift: '0 8px 28px rgba(10, 14, 26, 0.40)',
       },
     },
   },

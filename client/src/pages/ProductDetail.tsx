@@ -38,7 +38,7 @@ export default function ProductDetail() {
   if (product === null) {
     return (
       <div className="mx-auto max-w-3xl px-4 py-24 text-center">
-        <h1 className="text-3xl">{t('common.notFoundTitle')}</h1>
+        <h1 className="text-3xl text-gold">{t('common.notFoundTitle')}</h1>
         <Link to="/products" className="btn-gold mt-8">
           {t('product.backToProducts')}
         </Link>
@@ -54,23 +54,23 @@ export default function ProductDetail() {
   const waText = `Hello, I am interested in "${name}" (${formatPrice(product.price, lng)}, min. order ${product.min_order}). Please send a wholesale quotation.`
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-      <nav className="flex flex-wrap items-center gap-2 text-xs uppercase tracking-widest text-ink/40">
-        <Link to="/" className="hover:text-gold-dark">
+    <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+      <nav className="flex flex-wrap items-center gap-2 text-xs uppercase tracking-widest text-text-dim/50">
+        <Link to="/" className="hover:text-gold">
           {t('common.home')}
         </Link>
         <span>/</span>
-        <Link to="/products" className="hover:text-gold-dark">
+        <Link to="/products" className="hover:text-gold">
           {t('nav.products')}
         </Link>
         <span>/</span>
-        <span className="text-navy">{name}</span>
+        <span className="text-text">{name}</span>
       </nav>
 
-      <div className="mt-10 grid gap-12 lg:grid-cols-2">
+      <div className="mt-8 grid gap-8 lg:mt-10 lg:grid-cols-2 lg:gap-12">
         {/* Gallery */}
         <div>
-          <div className="aspect-square w-full border border-cream-dark bg-white">
+          <div className="aspect-square w-full border border-white/10 bg-card">
             <img src={mainImage} alt={name} className="h-full w-full object-cover" />
           </div>
           {images.length > 1 && (
@@ -80,8 +80,8 @@ export default function ProductDetail() {
                   key={img + i}
                   type="button"
                   onClick={() => setIdx(i)}
-                  className={`aspect-square w-20 border bg-white ${
-                    i === idx ? 'border-gold' : 'border-cream-dark opacity-70 hover:opacity-100'
+                  className={`aspect-square w-16 border sm:w-20 ${
+                    i === idx ? 'border-gold' : 'border-white/10 opacity-60 hover:opacity-100'
                   }`}
                 >
                   <img src={img} alt="" className="h-full w-full object-cover" />
@@ -101,27 +101,27 @@ export default function ProductDetail() {
               {categoryName}
             </Link>
           )}
-          <h1 className="mt-3 text-3xl leading-tight md:text-4xl">{name}</h1>
+          <h1 className="mt-3 text-2xl leading-tight text-gold sm:text-3xl md:text-4xl">{name}</h1>
 
-          <div className="mt-6 flex items-baseline gap-3 border-y border-cream-dark py-5">
-            <span className="text-3xl font-semibold text-gold-dark">
+          <div className="mt-6 flex items-baseline gap-3 border-y border-white/10 py-5">
+            <span className="text-2xl font-semibold text-gold sm:text-3xl">
               {formatPrice(product.price, lng)}
             </span>
-            <span className="text-sm text-ink/45">{t('product.perUnit')}</span>
+            <span className="text-sm text-text-dim">{t('product.perUnit')}</span>
           </div>
 
           <dl className="mt-6 grid grid-cols-2 gap-x-6 gap-y-4 text-sm">
             <div>
-              <dt className="text-xs font-semibold uppercase tracking-widest text-ink/40">
+              <dt className="text-xs font-semibold uppercase tracking-widest text-text-dim/50">
                 {t('product.minOrder')}
               </dt>
-              <dd className="mt-1 font-medium text-navy">{product.min_order}</dd>
+              <dd className="mt-1 font-medium text-text">{product.min_order}</dd>
             </div>
             <div>
-              <dt className="text-xs font-semibold uppercase tracking-widest text-ink/40">
+              <dt className="text-xs font-semibold uppercase tracking-widest text-text-dim/50">
                 {t('product.category')}
               </dt>
-              <dd className="mt-1 font-medium text-navy">{categoryName}</dd>
+              <dd className="mt-1 font-medium text-text">{categoryName}</dd>
             </div>
           </dl>
 
@@ -137,10 +137,10 @@ export default function ProductDetail() {
 
           {desc && (
             <div className="mt-10">
-              <h2 className="text-sm font-semibold uppercase tracking-widest text-ink/40">
+              <h2 className="text-sm font-semibold uppercase tracking-widest text-text-dim/50">
                 {t('product.description')}
               </h2>
-              <p className="mt-4 whitespace-pre-line text-sm leading-relaxed text-ink/65">
+              <p className="mt-4 whitespace-pre-line text-sm leading-relaxed text-text-dim">
                 {desc}
               </p>
             </div>
@@ -149,9 +149,9 @@ export default function ProductDetail() {
       </div>
 
       {related.length > 0 && (
-        <div className="mt-24">
-          <h2 className="text-2xl">{t('product.related')}</h2>
-          <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-20">
+          <h2 className="text-xl text-gold sm:text-2xl">{t('product.related')}</h2>
+          <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
             {related.map((p) => (
               <ProductCard key={p.id} product={p} />
             ))}

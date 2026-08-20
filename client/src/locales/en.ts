@@ -22,9 +22,9 @@ export default {
   },
   home: {
     heroEyebrow: 'Wholesale Textile Supplier',
-    heroTitle: 'Fabrics & Yarns for Serious Business',
+    heroTitle: 'Your Textile & Yarn Partner',
     heroSub:
-      'Since 1998 we have supplied garment producers and wholesalers with mill-direct cotton, linen and technical fabrics — wholesale pricing, dependable lead times.',
+      'Alaca Textile supplies cotton, linen and technical fabrics along with wholesale yarns. Quality products, competitive pricing, reliable delivery.',
     heroCtaPrimary: 'Explore Products',
     heroCtaSecondary: 'Contact Sales',
     featured: 'Featured Products',
@@ -33,9 +33,9 @@ export default {
     categoriesTitle: 'Product Categories',
     categoriesSub: 'Three focused lines, one standard of quality',
     aboutEyebrow: 'Who we are',
-    aboutTitle: 'A family-run mill with global reach',
+    aboutTitle: 'The Signature Sewn into Quality',
     aboutText:
-      'Atlas Textile has been weaving and trading fabrics for more than 25 years. From our Istanbul warehouse we serve manufacturers across Europe, the Middle East and North Africa — deep stock, honest prices, on-time delivery.',
+      'Alaca Textile is a family-run company based in Gaziantep, Turkey. We supply fabric and yarn to manufacturers and wholesalers across Europe, the Middle East and North Africa.',
     aboutCta: 'Learn About Us',
     ctaTitle: 'Ready to place a wholesale order?',
     ctaText: 'Send your requirement list on WhatsApp and get a quotation within 24 hours.',
@@ -65,8 +65,8 @@ export default {
     inStock: 'items',
   },
   about: {
-    title: 'About Atlas Textile',
-    subtitle: 'A quarter century of fabric, honesty and delivery',
+    title: 'About Alaca Textile',
+    subtitle: 'The Signature Sewn into Quality',
     yearsLabel: 'Years in business',
     clientsLabel: 'Active clients',
     countriesLabel: 'Countries served',
@@ -91,7 +91,7 @@ export default {
     office: 'Office & warehouse',
   },
   footer: {
-    blurb: 'Wholesale fabrics, yarns and textile materials from Istanbul to the world since 1998.',
+    blurb: 'Wholesale fabrics, yarns and textile materials. The signature sewn into quality.',
     quickLinks: 'Quick Links',
     categories: 'Categories',
     contact: 'Contact',
@@ -110,7 +110,7 @@ export default {
     email: 'Email',
     password: 'Password',
     signIn: 'Sign In',
-    invalid: 'Invalid email or password.',
+    invalid: 'Invalid password.',
     dashboard: 'Dashboard',
     products: 'Products',
     categories: 'Categories',

@@ -46,38 +46,38 @@ export default function AdminMessages() {
   return (
     <div>
       <div className="flex flex-wrap items-center justify-between gap-4">
-        <h1 className="text-2xl md:text-3xl">{t('admin.messagesTitle')}</h1>
+        <h1 className="text-xl text-gold sm:text-2xl md:text-3xl">{t('admin.messagesTitle')}</h1>
         {unread > 0 && <span className="badge badge-gold">{unread} {t('admin.unread')}</span>}
       </div>
 
       {loading ? (
         <Spinner />
       ) : messages.length === 0 ? (
-        <div className="mt-8 border border-cream-dark bg-white px-6 py-16 text-center text-sm text-ink/50">
+        <div className="mt-6 border border-white/10 bg-card px-6 py-12 text-center text-sm text-text-dim sm:mt-8 sm:py-16">
           {t('admin.noMessages')}
         </div>
       ) : (
-        <div className="mt-8 space-y-4">
+        <div className="mt-6 space-y-3 sm:mt-8 sm:space-y-4">
           {messages.map((m) => (
             <div
               key={m.id}
-              className={`border bg-white p-6 ${m.is_read ? 'border-cream-dark' : 'border-gold/40'}`}
+              className={`border bg-card p-4 sm:p-6 ${m.is_read ? 'border-white/10' : 'border-gold/30'}`}
             >
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div>
                   <div className="flex flex-wrap items-center gap-3">
-                    <h2 className="text-base font-semibold text-navy">{m.name}</h2>
+                    <h2 className="text-sm font-semibold text-text sm:text-base">{m.name}</h2>
                     {!m.is_read && <span className="badge badge-gold">{t('admin.unread')}</span>}
                   </div>
-                  <div className="mt-1 flex flex-wrap gap-x-4 gap-y-1 text-xs text-ink/50">
-                    <a href={`mailto:${m.email}`} className="hover:text-gold-dark">
+                  <div className="mt-1 flex flex-wrap gap-x-3 gap-y-1 text-xs text-text-dim sm:gap-x-4">
+                    <a href={`mailto:${m.email}`} className="hover:text-gold">
                       {m.email}
                     </a>
                     {m.phone && <span>{m.phone}</span>}
                     <span>{formatDate(m.created_at, i18n.language)}</span>
                   </div>
                 </div>
-                <div className="flex gap-2">
+                <div className="flex gap-1.5 sm:gap-2">
                   {!m.is_read && (
                     <button type="button" className="btn btn-navy btn-sm" onClick={() => markRead(m)}>
                       {t('admin.markRead')}
@@ -89,7 +89,7 @@ export default function AdminMessages() {
                   </button>
                 </div>
               </div>
-              <p className="mt-4 whitespace-pre-line text-sm leading-relaxed text-ink/70">
+              <p className="mt-3 whitespace-pre-line text-sm leading-relaxed text-text-dim sm:mt-4">
                 {m.message}
               </p>
             </div>

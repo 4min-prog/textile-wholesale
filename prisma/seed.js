@@ -126,20 +126,20 @@ const pages = [
   {
     slug: 'about',
     content_tr:
-      'Atlas Tekstil, İstanbul merkezli bir aile şirketidir. 25 yılı aşkın süredir Avrupa, Orta Doğu ve Kuzey Afrika\'daki üretici ve toptancılara kumaş ve iplik sağlıyoruz.\n\nVizyonumuz: tutarlı kalite, dürüst fiyat ve güvenilir teslimat talep eden üreticilerin en güvenilir toptan tekstil ortağı olmak.\n\nMisyonumuz: Değirmenlerle doğrudan çalışarak derin stok ve adil fiyatlar sunmak. Tek rulodan tam konteynere her sipariş aynı özenle kontrol edilir, paketlenir ve sevk edilir.',
+      'Alaca Tekstil, Gaziantep merkezli bir aile şirketidir. Yıllardır Avrupa, Orta Doğu ve Kuzey Afrika\'daki üretici ve toptancılara kumaş ve iplik sağlıyoruz.\n\nVizyonumuz: tutarlı kalite, dürüst fiyat ve güvenilir teslimat talep eden üreticilerin en güvenilir toptan tekstil ortağı olmak.\n\nMisyonumuz: Değirmenlerle doğrudan çalışarak derin stok ve adil fiyatlar sunmak. Tek rulodan tam konteynere her sipariş aynı özenle kontrol edilir, paketlenir ve sevk edilir.',
     content_en:
-      'Atlas Textile is a family-run company based in Istanbul, Turkey. For more than 25 years we have supplied fabric and yarn to manufacturers and wholesalers across Europe, the Middle East and North Africa.\n\nOur vision: to be the most trusted wholesale textile partner for producers who demand consistent quality, honest pricing and reliable delivery.\n\nOur mission: we work directly with mills to keep stock deep and prices fair. Every order — from a single roll to a full container — is inspected, packed and dispatched with the same care.',
+      'Alaca Textile is a family-run company based in Gaziantep, Turkey. We supply fabric and yarn to manufacturers and wholesalers across Europe, the Middle East and North Africa.\n\nOur vision: to be the most trusted wholesale textile partner for producers who demand consistent quality, honest pricing and reliable delivery.\n\nOur mission: we work directly with mills to keep stock deep and prices fair. Every order — from a single roll to a full container — is inspected, packed and dispatched with the same care.',
     content_ar:
-      'أطلس تكستايل شركة عائلية مقرها إسطنبول، تركيا. منذ أكثر من ٢٥ عامًا ونحن نزوّد المصنّعين وتجار الجملة في أوروبا والشرق الأوسط وشمال إفريقيا بالأقمشة والغزول.\n\nرؤيتنا: أن نكون شريك النسيج بالجملة الأكثر موثوقية للمصنّعين الذين يطلبون جودة ثابتة وأسعارًا صادقة وتسليمًا موثوقًا.\n\nرسالتنا: نعمل مباشرة مع المصانع لنحافظ على مخزون عميق وأسعار عادلة. كل طلب — من لفة واحدة إلى حاوية كاملة — يُفحص ويُعبّأ ويُشحن بنفس العناية.',
+      'ألاكا تكستايل شركة عائلية مقرها غازي عنتاب، تركيا. نزوّد المصنّعين وتجار الجملة في أوروبا والشرق الأوسط وشمال إفريقيا بالأقمشة والغزول.\n\nرؤيتنا: أن نكون شريك النسيج بالجملة الأكثر موثوقية للمصنّعين الذين يطلبون جودة ثابتة وأسعارًا صادقة وتسليمًا موثوقًا.\n\nرسالتنا: نعمل مباشرة مع المصانع لنحافظ على مخزون عميق وأسعار عادلة. كل طلب — من لفة واحدة إلى حاوية كاملة — يُفحص ويُعبّأ ويُشحن بنفس العناية.',
   },
   {
     slug: 'contact',
     content_tr:
-      'Satış Ofisi ve Depo: Kuyumcukent San. Sitesi, Merter, İstanbul\nÇalışma saatleri: Pazartesi – Cumartesi, 09:00 – 18:00 (TSİ)\nİhracat satış: export@atlastextile.com\nNumune ve stok listesi için WhatsApp üzerinden ulaşabilirsiniz.',
+      'Satış Ofisi ve Depo: Gaziantep, Türkiye\nÇalışma saatleri: Pazartesi – Cumartesi, 09:00 – 18:00 (TSİ)\nİletişim: info@alacateksitil.com\nNumune ve stok listesi için WhatsApp üzerinden ulaşabilirsiniz.',
     content_en:
-      'Sales Office & Warehouse: Kuyumcukent San. Sitesi, Merter, Istanbul, Türkiye\nWorking hours: Monday – Saturday, 09:00 – 18:00 (TRT)\nExport sales: export@atlastextile.com\nFor swatches and stock lists, reach us on WhatsApp.',
+      'Sales Office & Warehouse: Gaziantep, Türkiye\nWorking hours: Monday – Saturday, 09:00 – 18:00 (TRT)\nContact: info@alacateksitil.com\nFor swatches and stock lists, reach us on WhatsApp.',
     content_ar:
-      'مكتب المبيعات والمستودع: كويومجوكينت الصناعية، مرتر، إسطنبول، تركيا\nساعات العمل: الإثنين – السبت، ٠٩:٠٠ – ١٨:٠٠ (بتوقيت تركيا)\nمبيعات التصدير: export@atlastextile.com\nللعيّنات وقوائم المخزون تواصلوا معنا عبر واتساب.',
+      'مكتب المبيعات والمستودع: غازي عنتاب، تركيا\nساعات العمل: الإثنين – السبت، ٠٩:٠٠ – ١٨:٠٠ (بتوقيت تركيا)\nالتواصل: info@alacateksitil.com\nللعيّنات وقوائم المخزون تواصلوا معنا عبر واتساب.',
   },
   {
     slug: 'privacy',
@@ -188,10 +188,10 @@ async function main() {
   }
   console.log(`✓ ${pages.length} pages`)
 
-  const email = 'admin@site.com'
+  const email = 'admin@alacateksitil.com'
   const password = bcrypt.hashSync('admin123', 10)
   await prisma.admin.upsert({ where: { email }, update: { password }, create: { email, password } })
-  console.log('✓ admin user (admin@site.com / admin123)')
+  console.log('✓ admin user (admin@alacateksitil.com / admin123)')
 }
 
 main()

@@ -36,21 +36,21 @@ export default function AdminLogin() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-navy px-4">
       <div className="mb-8 flex flex-col items-center gap-4 text-center">
-        <div className="grid h-14 w-14 place-items-center border border-gold/60 text-3xl leading-none">
+        <div className="grid h-12 w-12 place-items-center border border-gold/60 text-2xl leading-none sm:h-14 sm:w-14 sm:text-3xl">
           <span className="font-serif text-gold">A</span>
         </div>
         <div>
-          <div className="font-serif text-2xl text-white">Atlas Textile</div>
+          <div className="font-serif text-xl text-white sm:text-2xl">ALACA TEKSTİTİL</div>
           <div className="mt-1 text-[10px] font-semibold uppercase tracking-widest text-gold">
             Admin
           </div>
         </div>
       </div>
 
-      <div className="w-full max-w-sm border border-gold/20 bg-white p-8">
-        <h1 className="text-xl">{t('admin.loginTitle')}</h1>
+      <div className="w-full max-w-sm border border-white/10 bg-card p-6 sm:p-8">
+        <h1 className="text-lg text-text sm:text-xl">{t('admin.loginTitle')}</h1>
         {error && (
-          <div className="mt-4 border border-red-600/30 bg-red-600/10 px-4 py-3 text-sm text-red-700">
+          <div className="mt-4 border border-red-600/30 bg-red-600/10 px-4 py-3 text-sm text-red-400">
             {error}
           </div>
         )}

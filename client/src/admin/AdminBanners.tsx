@@ -80,29 +80,29 @@ function BannerForm({
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-navy/60 p-4">
-      <div className="max-h-[92vh] w-full max-w-lg overflow-y-auto bg-white p-6 md:p-8">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-navy/80 p-4">
+      <div className="max-h-[92vh] w-full max-w-lg overflow-y-auto border border-white/10 bg-card p-5 sm:p-6 md:p-8">
         <div className="flex items-center justify-between">
-          <h2 className="text-xl">{t('admin.addBanner')}</h2>
-          <button type="button" onClick={onClose} className="text-ink/50 hover:text-navy" aria-label="Close">
+          <h2 className="text-lg text-gold sm:text-xl">{t('admin.addBanner')}</h2>
+          <button type="button" onClick={onClose} className="text-text-dim hover:text-text" aria-label="Close">
             <CloseIcon className="h-5 w-5" />
           </button>
         </div>
 
         {error && (
-          <div className="mt-4 border border-red-600/30 bg-red-600/10 px-4 py-3 text-sm text-red-700">
+          <div className="mt-4 border border-red-600/30 bg-red-600/10 px-4 py-3 text-sm text-red-400">
             {error}
           </div>
         )}
 
-        <form onSubmit={onSubmit} className="mt-6 space-y-5">
+        <form onSubmit={onSubmit} className="mt-5 space-y-4 sm:mt-6 sm:space-y-5">
           <div>
             <label className="label">{t('admin.image')}</label>
             <div className="flex items-start gap-4">
               {form.image_url ? (
-                <img src={form.image_url} alt="" className="h-32 w-56 border border-cream-dark object-cover" />
+                <img src={form.image_url} alt="" className="h-28 w-48 border border-white/10 object-cover sm:h-32 sm:w-56" />
               ) : (
-                <div className="grid h-32 w-56 place-items-center border border-dashed border-cream-dark text-ink/30">
+                <div className="grid h-28 w-48 place-items-center border border-dashed border-white/20 text-text-dim/40 sm:h-32 sm:w-56">
                   {t('admin.image')}
                 </div>
               )}
@@ -126,7 +126,7 @@ function BannerForm({
             <input className="input" value={form.title_ar} onChange={(e) => set('title_ar')(e.target.value)} />
           </div>
           <div>
-            <label className="flex cursor-pointer items-center gap-2 text-sm font-medium text-navy">
+            <label className="flex cursor-pointer items-center gap-2 text-sm font-medium text-text">
               <input
                 type="checkbox"
                 checked={form.is_active}
@@ -137,7 +137,7 @@ function BannerForm({
             </label>
           </div>
 
-          <div className="flex justify-end gap-3 border-t border-cream-dark pt-5">
+          <div className="flex justify-end gap-3 border-t border-white/10 pt-5">
             <button type="button" onClick={onClose} className="btn btn-outline-gold">
               {t('admin.cancel')}
             </button>
@@ -200,7 +200,7 @@ export default function AdminBanners() {
   return (
     <div>
       <div className="flex flex-wrap items-center justify-between gap-4">
-        <h1 className="text-2xl md:text-3xl">{t('admin.bannersTitle')}</h1>
+        <h1 className="text-xl text-gold sm:text-2xl md:text-3xl">{t('admin.bannersTitle')}</h1>
         <button
           type="button"
           className="btn-gold"
@@ -216,12 +216,12 @@ export default function AdminBanners() {
       {loading ? (
         <Spinner />
       ) : (
-        <div className="mt-8 border border-cream-dark bg-white">
+        <div className="mt-6 border border-white/10 bg-card sm:mt-8">
           <div className="overflow-x-auto">
             <table className="admin-table">
               <thead>
                 <tr>
-                  <th className="w-24">{t('admin.image')}</th>
+                  <th className="w-20 sm:w-24">{t('admin.image')}</th>
                   <th>{t('admin.titleEn')}</th>
                   <th>{t('admin.active')}</th>
                   <th>{t('admin.actions')}</th>
@@ -231,9 +231,9 @@ export default function AdminBanners() {
                 {banners.map((b) => (
                   <tr key={b.id}>
                     <td>
-                      <img src={b.image_url} alt="" className="h-14 w-24 border border-cream-dark object-cover" />
+                      <img src={b.image_url} alt="" className="h-10 w-16 border border-white/10 object-cover sm:h-14 sm:w-24" />
                     </td>
-                    <td className="font-medium text-navy">
+                    <td className="font-medium text-text">
                       {b[`title_${lng}` as keyof Pick<Banner, 'title_tr' | 'title_en' | 'title_ar'>]}
                     </td>
                     <td>
@@ -244,7 +244,7 @@ export default function AdminBanners() {
                       </button>
                     </td>
                     <td>
-                      <div className="flex gap-2">
+                      <div className="flex gap-1.5 sm:gap-2">
                         <button
                           type="button"
                           className="btn btn-navy btn-sm"

@@ -1,12 +1,13 @@
-export const WHATSAPP_NUMBER = '905001112233'
+export const WHATSAPP_NUMBER = '905357398364'
 
 export const COMPANY = {
-  name: 'Atlas Textile',
-  phone: '+90 212 555 0123',
-  phoneHref: 'tel:+902125550123',
-  email: 'sales@atlastextile.com',
-  address: 'Kuyumcukent San. Sitesi, Merter, Istanbul, Türkiye',
+  name: 'ALACA TEKSİTİL',
+  phone: '+90 535 739 83 64',
+  phoneHref: 'tel:+905357398364',
+  email: 'info@alacateksitil.com',
+  address: 'Gaziantep, Türkiye',
   hours: 'Mon – Sat, 09:00 – 18:00 (TRT)',
+  instagram: 'alaca.tekstil',
 }
 
 export function waLink(text: string): string {

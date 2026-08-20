@@ -48,13 +48,13 @@ export default function AdminPages() {
 
   return (
     <div>
-      <h1 className="text-2xl md:text-3xl">{t('admin.pagesTitle')}</h1>
+      <h1 className="text-xl text-gold sm:text-2xl md:text-3xl">{t('admin.pagesTitle')}</h1>
 
       {loading ? (
         <Spinner />
       ) : (
         <>
-          <div className="mt-8 border border-cream-dark bg-white">
+          <div className="mt-6 border border-white/10 bg-card sm:mt-8">
             <div className="overflow-x-auto">
               <table className="admin-table">
                 <thead>
@@ -66,7 +66,7 @@ export default function AdminPages() {
                 <tbody>
                   {pages.map((p) => (
                     <tr key={p.id}>
-                      <td className="font-medium text-navy">/{p.slug}</td>
+                      <td className="font-medium text-text">/{p.slug}</td>
                       <td>
                         <button type="button" className="btn btn-navy btn-sm" onClick={() => startEdit(p)}>
                           <EditIcon className="h-3.5 w-3.5" />
@@ -81,18 +81,18 @@ export default function AdminPages() {
           </div>
 
           {editing && (
-            <div className="mt-8 border border-cream-dark bg-white p-6 md:p-8">
-              <h2 className="text-xl">
-                {t('admin.editPage')}: <span className="text-gold-dark">/{editing.slug}</span>
+            <div className="mt-6 border border-white/10 bg-card p-5 sm:mt-8 sm:p-6 md:p-8">
+              <h2 className="text-lg text-gold sm:text-xl">
+                {t('admin.editPage')}: <span className="text-text-dim">/{editing.slug}</span>
               </h2>
 
               {error && (
-                <div className="mt-4 border border-red-600/30 bg-red-600/10 px-4 py-3 text-sm text-red-700">
+                <div className="mt-4 border border-red-600/30 bg-red-600/10 px-4 py-3 text-sm text-red-400">
                   {error}
                 </div>
               )}
 
-              <form onSubmit={onSubmit} className="mt-6 grid gap-5">
+              <form onSubmit={onSubmit} className="mt-5 grid gap-4 sm:mt-6 sm:gap-5">
                 <div>
                   <label className="label">{t('admin.contentTr')}</label>
                   <textarea
@@ -120,7 +120,7 @@ export default function AdminPages() {
                     onChange={(e) => setForm((f) => ({ ...f, content_ar: e.target.value }))}
                   />
                 </div>
-                <div className="flex justify-end gap-3 border-t border-cream-dark pt-5">
+                <div className="flex justify-end gap-3 border-t border-white/10 pt-5">
                   <button type="button" className="btn btn-outline-gold" onClick={() => setEditing(null)}>
                     {t('admin.cancel')}
                   </button>

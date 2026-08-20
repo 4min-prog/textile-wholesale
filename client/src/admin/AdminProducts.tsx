@@ -121,22 +121,22 @@ function ProductForm({
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-navy/60 p-4">
-      <div className="max-h-[92vh] w-full max-w-2xl overflow-y-auto bg-white p-6 md:p-8">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-navy/80 p-4">
+      <div className="max-h-[92vh] w-full max-w-2xl overflow-y-auto border border-white/10 bg-card p-5 sm:p-6 md:p-8">
         <div className="flex items-center justify-between">
-          <h2 className="text-xl">{product ? t('admin.editProduct') : t('admin.addProduct')}</h2>
-          <button type="button" onClick={onClose} className="text-ink/50 hover:text-navy" aria-label="Close">
+          <h2 className="text-lg text-gold sm:text-xl">{product ? t('admin.editProduct') : t('admin.addProduct')}</h2>
+          <button type="button" onClick={onClose} className="text-text-dim hover:text-text" aria-label="Close">
             <CloseIcon className="h-5 w-5" />
           </button>
         </div>
 
         {error && (
-          <div className="mt-4 border border-red-600/30 bg-red-600/10 px-4 py-3 text-sm text-red-700">
+          <div className="mt-4 border border-red-600/30 bg-red-600/10 px-4 py-3 text-sm text-red-400">
             {error}
           </div>
         )}
 
-        <form onSubmit={onSubmit} className="mt-6 space-y-5">
+        <form onSubmit={onSubmit} className="mt-5 space-y-4 sm:mt-6 sm:space-y-5">
           <div>
             <label className="label">{t('admin.category')}</label>
             <select
@@ -153,7 +153,7 @@ function ProductForm({
             </select>
           </div>
 
-          <div className="grid gap-5 sm:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-3 sm:gap-5">
             <div>
               <label className="label">{t('admin.nameTr')}</label>
               <input className="input" value={form.name_tr} onChange={(e) => set('name_tr')(e.target.value)} />
@@ -168,7 +168,7 @@ function ProductForm({
             </div>
           </div>
 
-          <div className="grid gap-5 sm:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-3 sm:gap-5">
             <div>
               <label className="label">{t('admin.price')}</label>
               <input
@@ -191,7 +191,7 @@ function ProductForm({
               />
             </div>
             <div className="flex items-end pb-2.5">
-              <label className="flex cursor-pointer items-center gap-2 text-sm font-medium text-navy">
+              <label className="flex cursor-pointer items-center gap-2 text-sm font-medium text-text">
                 <input
                   type="checkbox"
                   checked={form.is_active}
@@ -203,7 +203,7 @@ function ProductForm({
             </div>
           </div>
 
-          <div className="grid gap-5 sm:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-3 sm:gap-5">
             <div className="sm:col-span-1">
               <label className="label">{t('admin.descTr')}</label>
               <textarea rows={4} className="input resize-y" value={form.desc_tr} onChange={(e) => set('desc_tr')(e.target.value)} />
@@ -223,18 +223,18 @@ function ProductForm({
             <div className="flex flex-wrap gap-3">
               {form.images.map((img, i) => (
                 <div key={img + i} className="relative">
-                  <img src={img} alt="" className="h-20 w-20 border border-cream-dark object-cover" />
+                  <img src={img} alt="" className="h-16 w-16 border border-white/10 object-cover sm:h-20 sm:w-20" />
                   <button
                     type="button"
                     onClick={() => set('images')(form.images.filter((_, j) => j !== i))}
-                    className="absolute -right-2 -top-2 grid h-6 w-6 place-items-center bg-navy text-white hover:bg-red-600"
+                    className="absolute -right-2 -top-2 grid h-5 w-5 place-items-center bg-navy text-text hover:bg-red-600 sm:h-6 sm:w-6"
                     aria-label="Remove"
                   >
                     <CloseIcon className="h-3 w-3" />
                   </button>
                 </div>
               ))}
-              <label className="grid h-20 w-20 cursor-pointer place-items-center border border-dashed border-cream-dark text-gold-dark hover:border-gold">
+              <label className="grid h-16 w-16 cursor-pointer place-items-center border border-dashed border-white/20 text-gold hover:border-gold sm:h-20 sm:w-20">
                 {uploading ? (
                   <span className="h-5 w-5 animate-spin rounded-full border-2 border-gold border-t-navy" />
                 ) : (
@@ -245,7 +245,7 @@ function ProductForm({
             </div>
           </div>
 
-          <div className="flex justify-end gap-3 border-t border-cream-dark pt-5">
+          <div className="flex justify-end gap-3 border-t border-white/10 pt-5">
             <button type="button" onClick={onClose} className="btn btn-outline-gold">
               {t('admin.cancel')}
             </button>
@@ -317,7 +317,7 @@ export default function AdminProducts() {
   return (
     <div>
       <div className="flex flex-wrap items-center justify-between gap-4">
-        <h1 className="text-2xl md:text-3xl">{t('admin.productsTitle')}</h1>
+        <h1 className="text-xl text-gold sm:text-2xl md:text-3xl">{t('admin.productsTitle')}</h1>
         <button
           type="button"
           className="btn-gold"
@@ -333,16 +333,16 @@ export default function AdminProducts() {
       {loading ? (
         <Spinner />
       ) : (
-        <div className="mt-8 border border-cream-dark bg-white">
+        <div className="mt-6 border border-white/10 bg-card sm:mt-8">
           <div className="overflow-x-auto">
             <table className="admin-table">
               <thead>
                 <tr>
-                  <th className="w-16">{t('admin.image')}</th>
+                  <th className="w-12 sm:w-16">{t('admin.image')}</th>
                   <th>{t('admin.productName')}</th>
-                  <th>{t('admin.category')}</th>
+                  <th className="hidden sm:table-cell">{t('admin.category')}</th>
                   <th>{t('admin.price')}</th>
-                  <th>{t('admin.minOrder')}</th>
+                  <th className="hidden md:table-cell">{t('admin.minOrder')}</th>
                   <th>{t('admin.active')}</th>
                   <th>{t('admin.actions')}</th>
                 </tr>
@@ -354,17 +354,17 @@ export default function AdminProducts() {
                       <img
                         src={p.images[0] || DEFAULT_IMAGE}
                         alt=""
-                        className="h-12 w-12 border border-cream-dark object-cover"
+                        className="h-10 w-10 border border-white/10 object-cover sm:h-12 sm:w-12"
                       />
                     </td>
-                    <td className="font-medium text-navy">
+                    <td className="font-medium text-text">
                       {p[`name_${lng}` as keyof Pick<Product, 'name_tr' | 'name_en' | 'name_ar'>]}
                     </td>
-                    <td className="text-ink/60">
+                    <td className="hidden text-text-dim sm:table-cell">
                       {p.category ? p.category[`name_${lng}` as keyof Pick<Category, 'name_tr' | 'name_en' | 'name_ar'>] : ''}
                     </td>
-                    <td className="font-medium text-gold-dark">{formatPrice(p.price, lng)}</td>
-                    <td className="text-ink/60">{p.min_order}</td>
+                    <td className="font-medium text-gold">{formatPrice(p.price, lng)}</td>
+                    <td className="hidden text-text-dim md:table-cell">{p.min_order}</td>
                     <td>
                       <button
                         type="button"
@@ -377,7 +377,7 @@ export default function AdminProducts() {
                       </button>
                     </td>
                     <td>
-                      <div className="flex gap-2">
+                      <div className="flex gap-1.5 sm:gap-2">
                         <button
                           type="button"
                           className="btn btn-navy btn-sm"

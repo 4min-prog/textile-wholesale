@@ -38,22 +38,23 @@ export default function Home() {
   return (
     <div>
       {/* Hero */}
-      <section className="relative flex min-h-[560px] items-center overflow-hidden">
+      <section className="relative flex min-h-[500px] items-center overflow-hidden sm:min-h-[560px]">
         <img src={heroImage} alt="" className="absolute inset-0 h-full w-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-b from-navy/85 via-navy/75 to-navy/90" />
-        <div className="relative mx-auto w-full max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
-          <div className="max-w-2xl">
-            <div className="flex items-center gap-3">
-              <span className="h-px w-10 bg-gold" />
+        <div className="absolute inset-0 bg-gradient-to-b from-navy/90 via-navy/80 to-navy/95" />
+        <div className="relative mx-auto w-full max-w-7xl px-4 py-20 text-center sm:px-6 sm:py-24 sm:text-left lg:px-8">
+          <div className="mx-auto max-w-2xl sm:mx-0">
+            <div className="flex items-center justify-center gap-3 sm:justify-start">
+              <span className="h-px w-10 bg-gold/60" />
               <span className="eyebrow">{t('home.heroEyebrow')}</span>
+              <span className="h-px w-10 bg-gold/60 sm:hidden" />
             </div>
-            <h1 className="mt-6 text-4xl leading-tight text-white md:text-6xl">
+            <h1 className="mt-6 text-3xl leading-tight text-gold sm:text-4xl md:text-6xl">
               {t('home.heroTitle')}
             </h1>
-            <p className="mt-6 max-w-xl text-base leading-relaxed text-white/70 md:text-lg">
+            <p className="mx-auto mt-6 max-w-xl text-sm leading-relaxed text-text-dim sm:mx-0 sm:text-base md:text-lg">
               {t('home.heroSub')}
             </p>
-            <div className="mt-10 flex flex-wrap gap-4">
+            <div className="mt-8 flex flex-wrap justify-center gap-4 sm:justify-start">
               <Link to="/products" className="btn-gold">
                 {t('home.heroCtaPrimary')}
               </Link>
@@ -66,22 +67,22 @@ export default function Home() {
       </section>
 
       {/* Featured products */}
-      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
         <SectionHeading
-          eyebrow="Atlas"
+          eyebrow="ALACA"
           title={t('home.featured')}
           sub={t('home.featuredSub')}
         />
         {loading ? (
           <Spinner />
         ) : (
-          <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
             {featured.map((p) => (
               <ProductCard key={p.id} product={p} />
             ))}
           </div>
         )}
-        <div className="mt-12 text-center">
+        <div className="mt-10 text-center">
           <Link to="/products" className="btn-navy">
             {t('common.viewAll')}
           </Link>
@@ -89,26 +90,26 @@ export default function Home() {
       </section>
 
       {/* Categories */}
-      <section className="bg-cream-dark/50">
-        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+      <section className="bg-card">
+        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
           <SectionHeading
             eyebrow={t('home.categoriesEyebrow')}
             title={t('home.categoriesTitle')}
             sub={t('home.categoriesSub')}
           />
-          <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
             {categories.map((c) => (
               <Link
                 key={c.id}
                 to={`/products?category=${c.slug}`}
-                className="group flex flex-col items-center gap-5 bg-navy p-10 text-center transition-colors hover:bg-navy-light"
+                className="group flex flex-col items-center gap-5 border border-white/10 bg-navy p-8 text-center transition-all duration-200 hover:border-gold/30 sm:p-10"
               >
                 <CategoryIcon slug={c.slug} className="h-12 w-12 text-gold" />
                 <div>
-                  <h3 className="text-xl text-white transition-colors group-hover:text-gold">
+                  <h3 className="text-lg text-text transition-colors group-hover:text-gold sm:text-xl">
                     {field(c, 'name', lng)}
                   </h3>
-                  <p className="mt-2 text-xs uppercase tracking-widest text-white/40">
+                  <p className="mt-2 text-xs uppercase tracking-widest text-text-dim/50">
                     {c._count?.products ?? 0} {t('categories.inStock')}
                   </p>
                 </div>
@@ -122,24 +123,24 @@ export default function Home() {
       </section>
 
       {/* About snippet */}
-      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-        <div className="grid items-center gap-14 lg:grid-cols-2">
+      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
           <div>
             <div className="flex items-center gap-3">
-              <span className="h-px w-10 bg-gold" />
+              <span className="h-px w-10 bg-gold/60" />
               <span className="eyebrow">{t('home.aboutEyebrow')}</span>
             </div>
-            <h2 className="mt-5 text-3xl leading-tight md:text-4xl">{t('home.aboutTitle')}</h2>
-            <p className="mt-6 max-w-lg text-base leading-relaxed text-ink/60">
+            <h2 className="mt-5 text-2xl leading-tight text-gold sm:text-3xl md:text-4xl">{t('home.aboutTitle')}</h2>
+            <p className="mt-6 max-w-lg text-sm leading-relaxed text-text-dim sm:text-base">
               {t('home.aboutText')}
             </p>
-            <Link to="/about" className="btn-navy mt-9">
+            <Link to="/about" className="btn-navy mt-8">
               {t('home.aboutCta')}
             </Link>
           </div>
           <div className="relative">
-            <div className="absolute -start-4 -top-4 h-24 w-24 border border-gold" />
-            <div className="aspect-[4/3] w-full border border-cream-dark bg-white p-3">
+            <div className="absolute -start-4 -top-4 h-20 w-20 border border-gold/40 sm:h-24 sm:w-24" />
+            <div className="aspect-[4/3] w-full border border-white/10 bg-card p-3">
               <img src={aboutImage} alt="" className="h-full w-full object-cover" />
             </div>
           </div>
@@ -147,15 +148,15 @@ export default function Home() {
       </section>
 
       {/* WhatsApp CTA */}
-      <section className="bg-navy">
-        <div className="mx-auto max-w-4xl px-4 py-20 text-center sm:px-6">
-          <h2 className="text-3xl leading-tight text-white md:text-4xl">{t('home.ctaTitle')}</h2>
-          <p className="mx-auto mt-5 max-w-xl text-white/65">{t('home.ctaText')}</p>
+      <section className="bg-card">
+        <div className="mx-auto max-w-4xl px-4 py-16 text-center sm:px-6 sm:py-20">
+          <h2 className="text-2xl leading-tight text-gold sm:text-3xl md:text-4xl">{t('home.ctaTitle')}</h2>
+          <p className="mx-auto mt-5 max-w-xl text-text-dim">{t('home.ctaText')}</p>
           <a
             href={waLink(t('wa.defaultText'))}
             target="_blank"
             rel="noreferrer"
-            className="btn-gold mt-9"
+            className="btn-gold mt-8"
           >
             <WhatsIcon className="h-4 w-4" />
             {t('home.ctaButton')}

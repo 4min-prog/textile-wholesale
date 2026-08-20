@@ -22,28 +22,32 @@ export default function Footer() {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="bg-navy-dark text-white/65">
-      <div className="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 md:grid-cols-2 lg:grid-cols-4 lg:px-8">
+    <footer className="bg-navy-dark text-white/60">
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-2 lg:grid-cols-4 lg:px-8">
         <div>
           <div className="flex items-center gap-3">
-            <div className="grid h-10 w-10 place-items-center border border-gold/60 text-xl leading-none">
+            <div className="grid h-9 w-9 place-items-center border border-gold/60 text-lg leading-none">
               <span className="font-serif text-gold">A</span>
             </div>
             <div className="leading-none">
-              <div className="font-serif text-lg text-white">Atlas</div>
-              <div className="mt-1 text-[10px] font-semibold uppercase tracking-widest text-gold">
-                Textile
+              <div className="font-serif text-base text-white">ALACA</div>
+              <div className="mt-1 text-[9px] font-semibold uppercase tracking-widest text-gold">
+                TEKSTİTİL
               </div>
             </div>
           </div>
-          <p className="mt-5 max-w-xs text-sm leading-relaxed">{t('footer.blurb')}</p>
+          <p className="mt-4 max-w-xs text-sm leading-relaxed">{t('footer.blurb')}</p>
+          <div className="mt-4 flex items-center gap-1.5 text-xs text-white/40">
+            <span>📍</span>
+            <span>{COMPANY.address}</span>
+          </div>
         </div>
 
         <div>
           <h4 className="text-xs font-semibold uppercase tracking-widest text-gold">
             {t('footer.quickLinks')}
           </h4>
-          <ul className="mt-5 space-y-3 text-sm">
+          <ul className="mt-4 space-y-2.5 text-sm">
             {[
               { to: '/', label: t('nav.home') },
               { to: '/products', label: t('nav.products') },
@@ -64,7 +68,7 @@ export default function Footer() {
           <h4 className="text-xs font-semibold uppercase tracking-widest text-gold">
             {t('footer.categories')}
           </h4>
-          <ul className="mt-5 space-y-3 text-sm">
+          <ul className="mt-4 space-y-2.5 text-sm">
             {categories.map((c) => (
               <li key={c.id}>
                 <Link
@@ -82,7 +86,7 @@ export default function Footer() {
           <h4 className="text-xs font-semibold uppercase tracking-widest text-gold">
             {t('footer.contact')}
           </h4>
-          <ul className="mt-5 space-y-3 text-sm">
+          <ul className="mt-4 space-y-2.5 text-sm">
             <li>
               <a href={COMPANY.phoneHref} className="transition-colors hover:text-gold">
                 {COMPANY.phone}
@@ -103,15 +107,24 @@ export default function Footer() {
                 <WhatsIcon className="h-4 w-4" /> WhatsApp
               </a>
             </li>
-            <li className="text-white/50">{COMPANY.address}</li>
+            <li>
+              <a
+                href={`https://instagram.com/${COMPANY.instagram}`}
+                target="_blank"
+                rel="noreferrer"
+                className="transition-colors hover:text-gold"
+              >
+                Instagram: @{COMPANY.instagram}
+              </a>
+            </li>
           </ul>
         </div>
       </div>
 
       <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-6 text-xs text-white/40 sm:flex-row sm:px-6 lg:px-8">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-5 text-xs text-white/35 sm:flex-row sm:px-6 lg:px-8">
           <p>
-            © {year} Atlas Textile. {t('footer.rights')}
+            © {year} {COMPANY.name}. {t('footer.rights')}
           </p>
           <Link
             to="/admin"

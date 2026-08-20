@@ -28,6 +28,12 @@ export default function AdminLayout() {
       .catch(() => {})
   }, [])
 
+  useEffect(() => {
+    if (open) document.body.style.overflow = 'hidden'
+    else document.body.style.overflow = ''
+    return () => { document.body.style.overflow = '' }
+  }, [open])
+
   const links = [
     { to: '/admin', label: t('admin.dashboard'), end: true, icon: <DashboardIcon className="h-5 w-5" /> },
     { to: '/admin/products', label: t('admin.products'), end: false, icon: <BoxIcon className="h-5 w-5" /> },
@@ -43,31 +49,31 @@ export default function AdminLayout() {
   }
 
   return (
-    <div className="min-h-screen bg-cream">
+    <div className="min-h-screen bg-navy">
       {/* Mobile overlay */}
       {open && (
-        <div className="fixed inset-0 z-30 bg-black/40 md:hidden" onClick={() => setOpen(false)} />
+        <div className="fixed inset-0 z-30 bg-black/60 md:hidden" onClick={() => setOpen(false)} />
       )}
 
       {/* Sidebar */}
       <aside
-        className={`fixed inset-y-0 left-0 z-40 flex w-64 flex-col bg-navy-dark transition-transform duration-200 md:translate-x-0 ${
+        className={`fixed inset-y-0 left-0 z-40 flex w-64 flex-col bg-navy-dark border-r border-white/10 transition-transform duration-200 md:translate-x-0 ${
           open ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
-        <div className="flex h-20 items-center gap-3 border-b border-white/10 px-6">
-          <div className="grid h-10 w-10 place-items-center border border-gold/60 text-xl leading-none">
+        <div className="flex h-16 items-center gap-3 border-b border-white/10 px-6 sm:h-20">
+          <div className="grid h-9 w-9 place-items-center border border-gold/60 text-lg leading-none sm:h-10 sm:w-10">
             <span className="font-serif text-gold">A</span>
           </div>
           <div className="leading-none">
-            <div className="font-serif text-lg text-white">Atlas</div>
-            <div className="mt-1 text-[10px] font-semibold uppercase tracking-widest text-gold">
+            <div className="font-serif text-base text-white sm:text-lg">ALACA</div>
+            <div className="mt-1 text-[9px] font-semibold uppercase tracking-widest text-gold sm:text-[10px]">
               Admin
             </div>
           </div>
         </div>
 
-        <nav className="flex-1 space-y-1 px-3 py-6">
+        <nav className="flex-1 space-y-0.5 px-3 py-4 sm:py-6">
           {links.map((l) => (
             <NavLink
               key={l.to}
@@ -75,10 +81,10 @@ export default function AdminLayout() {
               end={l.end}
               onClick={() => setOpen(false)}
               className={({ isActive }) =>
-                `flex items-center gap-3 border-l-2 px-4 py-3 text-sm font-medium transition-colors ${
+                `flex items-center gap-3 border-l-2 px-4 py-2.5 text-sm font-medium transition-colors sm:py-3 ${
                   isActive
-                    ? 'border-gold bg-navy text-gold'
-                    : 'border-transparent text-white/60 hover:text-white'
+                    ? 'border-gold bg-gold/10 text-gold'
+                    : 'border-transparent text-white/50 hover:text-white hover:bg-white/5'
                 }`
               }
             >
@@ -88,14 +94,14 @@ export default function AdminLayout() {
           ))}
         </nav>
 
-        <div className="border-t border-white/10 px-6 py-5">
+        <div className="border-t border-white/10 px-6 py-4 sm:py-5">
           {admin && (
-            <div className="mb-4 truncate text-xs text-white/50">{admin.email}</div>
+            <div className="mb-3 truncate text-xs text-white/40">{admin.email}</div>
           )}
           <button
             type="button"
             onClick={logout}
-            className="flex items-center gap-3 px-4 py-3 text-sm font-medium text-white/60 transition-colors hover:text-gold"
+            className="flex items-center gap-3 px-4 py-2.5 text-sm font-medium text-white/50 transition-colors hover:text-gold"
           >
             <LogOutIcon className="h-5 w-5" />
             {t('admin.logout')}
@@ -105,16 +111,16 @@ export default function AdminLayout() {
 
       {/* Main column */}
       <div className="md:pl-64">
-        <header className="sticky top-0 z-20 flex h-16 items-center justify-between border-b border-cream-dark bg-white px-4 md:hidden">
-          <span className="font-serif text-lg text-navy">
-            Atlas <span className="text-gold-dark">Admin</span>
+        <header className="sticky top-0 z-20 flex h-14 items-center justify-between border-b border-white/10 bg-navy/95 px-4 backdrop-blur-md sm:h-16 md:hidden">
+          <span className="font-serif text-base text-text">
+            ALACA <span className="text-gold">Admin</span>
           </span>
-          <button type="button" onClick={() => setOpen(true)} className="text-navy" aria-label="Menu">
+          <button type="button" onClick={() => setOpen(!open)} className="text-text" aria-label="Menu">
             {open ? <CloseIcon className="h-6 w-6" /> : <MenuIcon className="h-6 w-6" />}
           </button>
         </header>
 
-        <main className="p-5 md:p-10">
+        <main className="p-4 sm:p-5 md:p-8 lg:p-10">
           <Outlet />
         </main>
       </div>

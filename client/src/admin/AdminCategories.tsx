@@ -64,22 +64,22 @@ function CategoryForm({
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-navy/60 p-4">
-      <div className="max-h-[92vh] w-full max-w-lg overflow-y-auto bg-white p-6 md:p-8">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-navy/80 p-4">
+      <div className="max-h-[92vh] w-full max-w-lg overflow-y-auto border border-white/10 bg-card p-5 sm:p-6 md:p-8">
         <div className="flex items-center justify-between">
-          <h2 className="text-xl">{category ? t('admin.editCategory') : t('admin.addCategory')}</h2>
-          <button type="button" onClick={onClose} className="text-ink/50 hover:text-navy" aria-label="Close">
+          <h2 className="text-lg text-gold sm:text-xl">{category ? t('admin.editCategory') : t('admin.addCategory')}</h2>
+          <button type="button" onClick={onClose} className="text-text-dim hover:text-text" aria-label="Close">
             <CloseIcon className="h-5 w-5" />
           </button>
         </div>
 
         {error && (
-          <div className="mt-4 border border-red-600/30 bg-red-600/10 px-4 py-3 text-sm text-red-700">
+          <div className="mt-4 border border-red-600/30 bg-red-600/10 px-4 py-3 text-sm text-red-400">
             {error}
           </div>
         )}
 
-        <form onSubmit={onSubmit} className="mt-6 space-y-5">
+        <form onSubmit={onSubmit} className="mt-5 space-y-4 sm:mt-6 sm:space-y-5">
           <div>
             <label className="label">{t('admin.nameTr')}</label>
             <input className="input" value={form.name_tr} onChange={(e) => set('name_tr')(e.target.value)} />
@@ -103,7 +103,7 @@ function CategoryForm({
               }}
             />
           </div>
-          <div className="flex justify-end gap-3 border-t border-cream-dark pt-5">
+          <div className="flex justify-end gap-3 border-t border-white/10 pt-5">
             <button type="button" onClick={onClose} className="btn btn-outline-gold">
               {t('admin.cancel')}
             </button>
@@ -148,7 +148,7 @@ export default function AdminCategories() {
   return (
     <div>
       <div className="flex flex-wrap items-center justify-between gap-4">
-        <h1 className="text-2xl md:text-3xl">{t('admin.categoriesTitle')}</h1>
+        <h1 className="text-xl text-gold sm:text-2xl md:text-3xl">{t('admin.categoriesTitle')}</h1>
         <button
           type="button"
           className="btn-gold"
@@ -164,7 +164,7 @@ export default function AdminCategories() {
       {loading ? (
         <Spinner />
       ) : (
-        <div className="mt-8 border border-cream-dark bg-white">
+        <div className="mt-6 border border-white/10 bg-card sm:mt-8">
           <div className="overflow-x-auto">
             <table className="admin-table">
               <thead>
@@ -178,11 +178,11 @@ export default function AdminCategories() {
               <tbody>
                 {categories.map((c) => (
                   <tr key={c.id}>
-                    <td className="font-medium text-navy">{c[`name_${lng}` as keyof Pick<Category, 'name_tr' | 'name_en' | 'name_ar'>]}</td>
-                    <td className="text-ink/50">/{c.slug}</td>
-                    <td className="text-ink/60">{c._count?.products ?? 0}</td>
+                    <td className="font-medium text-text">{c[`name_${lng}` as keyof Pick<Category, 'name_tr' | 'name_en' | 'name_ar'>]}</td>
+                    <td className="text-text-dim">/{c.slug}</td>
+                    <td className="text-text-dim">{c._count?.products ?? 0}</td>
                     <td>
-                      <div className="flex gap-2">
+                      <div className="flex gap-1.5 sm:gap-2">
                         <button
                           type="button"
                           className="btn btn-navy btn-sm"
