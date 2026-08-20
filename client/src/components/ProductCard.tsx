@@ -13,7 +13,7 @@ export default function ProductCard({ product }: { product: Product }) {
   return (
     <Link
       to={`/products/${product.id}`}
-      className="group block border border-white/10 bg-card transition-all duration-200 hover:border-gold/30 hover:shadow-lift"
+      className="group block overflow-hidden rounded-2xl border border-white/10 bg-card transition-all duration-200 hover:border-gold/30 hover:shadow-lift"
     >
       <div className="aspect-square w-full overflow-hidden bg-navy-light">
         <img src={image} alt={name} loading="lazy" className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" />

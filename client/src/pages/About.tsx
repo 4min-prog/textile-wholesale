@@ -57,14 +57,14 @@ export default function About() {
                   {p}
                 </p>
               ))}
-              <Link to="/contact" className="btn-gold mt-6">
+              <Link to="/contact" className="btn btn-gold mt-6">
                 {t('nav.contact')}
               </Link>
             </div>
             <div>
               <div className="relative">
                 <div className="absolute -end-4 -top-4 h-20 w-20 border border-gold/40 sm:h-24 sm:w-24" />
-                <div className="aspect-[4/3] w-full border border-white/10 bg-card p-3">
+                <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl border border-white/10 bg-card p-3">
                   <img
                     src="/uploads/seed/banner-weave.svg"
                     alt="ALACA TEKSTİTİL"

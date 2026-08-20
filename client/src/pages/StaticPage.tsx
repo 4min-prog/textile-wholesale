@@ -25,7 +25,7 @@ export default function StaticPage() {
     return (
       <div className="mx-auto max-w-3xl px-4 py-24 text-center">
         <h1 className="text-3xl">{t('common.notFoundTitle')}</h1>
-        <Link to="/" className="btn-gold mt-8">
+        <Link to="/" className="btn btn-gold mt-8">
           {t('common.backHome')}
         </Link>
       </div>
@@ -38,12 +38,12 @@ export default function StaticPage() {
     <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
       <div className="flex items-center gap-3">
         <span className="h-px w-10 bg-gold" />
-        <span className="eyebrow">Atlas</span>
+        <span className="eyebrow">ALACA</span>
       </div>
       <h1 className="mt-4 text-4xl capitalize">{slug}</h1>
       <div className="mt-8 space-y-6">
         {content.map((p, i) => (
-          <p key={i} className="leading-relaxed text-ink/65">
+          <p key={i} className="leading-relaxed text-text-dim">
             {p}
           </p>
         ))}

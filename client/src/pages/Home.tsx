@@ -55,10 +55,10 @@ export default function Home() {
               {t('home.heroSub')}
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4 sm:justify-start">
-              <Link to="/products" className="btn-gold">
+              <Link to="/products" className="btn btn-gold">
                 {t('home.heroCtaPrimary')}
               </Link>
-              <Link to="/contact" className="btn-outline-white">
+              <Link to="/contact" className="btn btn-outline-white">
                 {t('home.heroCtaSecondary')}
               </Link>
             </div>
@@ -83,7 +83,7 @@ export default function Home() {
           </div>
         )}
         <div className="mt-10 text-center">
-          <Link to="/products" className="btn-navy">
+          <Link to="/products" className="btn btn-navy">
             {t('common.viewAll')}
           </Link>
         </div>
@@ -102,7 +102,7 @@ export default function Home() {
               <Link
                 key={c.id}
                 to={`/products?category=${c.slug}`}
-                className="group flex flex-col items-center gap-5 border border-white/10 bg-navy p-8 text-center transition-all duration-200 hover:border-gold/30 sm:p-10"
+                className="group flex flex-col items-center gap-5 rounded-2xl border border-white/10 bg-navy p-8 text-center transition-all duration-200 hover:border-gold/30 sm:p-10"
               >
                 <CategoryIcon slug={c.slug} className="h-12 w-12 text-gold" />
                 <div>
@@ -134,13 +134,13 @@ export default function Home() {
             <p className="mt-6 max-w-lg text-sm leading-relaxed text-text-dim sm:text-base">
               {t('home.aboutText')}
             </p>
-            <Link to="/about" className="btn-navy mt-8">
+            <Link to="/about" className="btn btn-navy mt-8">
               {t('home.aboutCta')}
             </Link>
           </div>
           <div className="relative">
             <div className="absolute -start-4 -top-4 h-20 w-20 border border-gold/40 sm:h-24 sm:w-24" />
-            <div className="aspect-[4/3] w-full border border-white/10 bg-card p-3">
+            <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl border border-white/10 bg-card p-3">
               <img src={aboutImage} alt="" className="h-full w-full object-cover" />
             </div>
           </div>
@@ -156,7 +156,7 @@ export default function Home() {
             href={waLink(t('wa.defaultText'))}
             target="_blank"
             rel="noreferrer"
-            className="btn-gold mt-8"
+            className="btn btn-gold mt-8"
           >
             <WhatsIcon className="h-4 w-4" />
             {t('home.ctaButton')}

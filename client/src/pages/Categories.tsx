@@ -39,7 +39,7 @@ export default function Categories() {
             <Link
               key={c.id}
               to={`/products?category=${c.slug}`}
-              className="group flex flex-col gap-6 border border-white/10 bg-navy p-8 transition-all duration-200 hover:border-gold/30 sm:p-10"
+              className="group flex flex-col gap-6 rounded-2xl border border-white/10 bg-navy p-8 transition-all duration-200 hover:border-gold/30 sm:p-10"
             >
               <CategoryIcon slug={c.slug} className="h-14 w-14 text-gold" />
               <div>

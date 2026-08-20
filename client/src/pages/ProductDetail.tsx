@@ -39,7 +39,7 @@ export default function ProductDetail() {
     return (
       <div className="mx-auto max-w-3xl px-4 py-24 text-center">
         <h1 className="text-3xl text-gold">{t('common.notFoundTitle')}</h1>
-        <Link to="/products" className="btn-gold mt-8">
+        <Link to="/products" className="btn btn-gold mt-8">
           {t('product.backToProducts')}
         </Link>
       </div>
@@ -70,7 +70,7 @@ export default function ProductDetail() {
       <div className="mt-8 grid gap-8 lg:mt-10 lg:grid-cols-2 lg:gap-12">
         {/* Gallery */}
         <div>
-          <div className="aspect-square w-full border border-white/10 bg-card">
+          <div className="aspect-square w-full overflow-hidden rounded-2xl border border-white/10 bg-card">
             <img src={mainImage} alt={name} className="h-full w-full object-cover" />
           </div>
           {images.length > 1 && (
@@ -80,7 +80,7 @@ export default function ProductDetail() {
                   key={img + i}
                   type="button"
                   onClick={() => setIdx(i)}
-                  className={`aspect-square w-16 border sm:w-20 ${
+                  className={`aspect-square w-16 overflow-hidden rounded-lg border sm:w-20 ${
                     i === idx ? 'border-gold' : 'border-white/10 opacity-60 hover:opacity-100'
                   }`}
                 >
@@ -129,7 +129,7 @@ export default function ProductDetail() {
             href={waLink(waText)}
             target="_blank"
             rel="noreferrer"
-            className="btn-gold mt-8 w-full sm:w-auto"
+            className="btn btn-gold mt-8 w-full sm:w-auto"
           >
             <WhatsIcon className="h-4 w-4" />
             {t('product.orderOnWhatsApp')}

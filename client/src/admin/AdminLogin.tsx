@@ -68,7 +68,7 @@ export default function AdminLogin() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <button type="submit" disabled={loading} className="btn-gold w-full">
+          <button type="submit" disabled={loading} className="btn btn-gold w-full">
             {loading ? t('admin.saving') : t('admin.signIn')}
           </button>
         </form>

@@ -159,7 +159,7 @@ export default function Contact() {
                   />
                 </div>
                 <div>
-                  <button type="submit" disabled={sending} className="btn-gold">
+                  <button type="submit" disabled={sending} className="btn btn-gold">
                     {sending ? t('admin.saving') : t('contact.send')}
                   </button>
                 </div>
