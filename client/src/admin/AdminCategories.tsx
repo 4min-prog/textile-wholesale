@@ -5,6 +5,8 @@ import type { Category } from '../types'
 import Spinner from '../components/Spinner'
 import { EditIcon, TrashIcon, CloseIcon } from '../components/Icons'
 import { slugify } from '../utils'
+import ConfirmDialog from '../components/ConfirmDialog'
+import Toast from '../components/Toast'
 
 interface FormState {
   name_tr: string
@@ -64,8 +66,8 @@ function CategoryForm({
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-navy/80 p-4">
-      <div className="max-h-[92vh] w-full max-w-lg overflow-y-auto border border-white/10 bg-card p-5 sm:p-6 md:p-8">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm">
+      <div className="max-h-[92vh] w-full max-w-lg overflow-y-auto rounded-2xl border border-white/10 bg-card p-5 shadow-2xl sm:p-6 md:p-8">
         <div className="flex items-center justify-between">
           <h2 className="text-lg text-gold sm:text-xl">{category ? t('admin.editCategory') : t('admin.addCategory')}</h2>
           <button type="button" onClick={onClose} className="text-text-dim hover:text-text" aria-label="Close">
@@ -74,7 +76,7 @@ function CategoryForm({
         </div>
 
         {error && (
-          <div className="mt-4 border border-red-600/30 bg-red-600/10 px-4 py-3 text-sm text-red-400">
+          <div className="mt-4 rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-400">
             {error}
           </div>
         )}
@@ -107,7 +109,7 @@ function CategoryForm({
             <button type="button" onClick={onClose} className="btn btn-outline-gold">
               {t('admin.cancel')}
             </button>
-            <button type="submit" disabled={saving} className="btn-gold">
+            <button type="submit" disabled={saving} className="btn btn-gold">
               {saving ? t('admin.saving') : t('admin.save')}
             </button>
           </div>
@@ -124,6 +126,8 @@ export default function AdminCategories() {
   const [loading, setLoading] = useState(true)
   const [open, setOpen] = useState(false)
   const [editing, setEditing] = useState<Category | null>(null)
+  const [confirmTarget, setConfirmTarget] = useState<Category | null>(null)
+  const [toast, setToast] = useState<{ type: 'success' | 'error'; message: string } | null>(null)
 
   const load = () => {
     setLoading(true)
@@ -136,12 +140,12 @@ export default function AdminCategories() {
   useEffect(load, [])
 
   const remove = async (c: Category) => {
-    if (!window.confirm(t('admin.confirmDelete'))) return
     try {
       await api(`/admin/categories/${c.id}`, { method: 'DELETE' })
+      setToast({ type: 'success', message: t('admin.deleted') })
       load()
     } catch (err) {
-      window.alert(err instanceof Error ? err.message : 'Error')
+      setToast({ type: 'error', message: err instanceof Error ? err.message : 'Error' })
     }
   }
 
@@ -151,7 +155,7 @@ export default function AdminCategories() {
         <h1 className="text-xl text-gold sm:text-2xl md:text-3xl">{t('admin.categoriesTitle')}</h1>
         <button
           type="button"
-          className="btn-gold"
+          className="btn btn-gold"
           onClick={() => {
             setEditing(null)
             setOpen(true)
@@ -164,7 +168,7 @@ export default function AdminCategories() {
       {loading ? (
         <Spinner />
       ) : (
-        <div className="mt-6 border border-white/10 bg-card sm:mt-8">
+        <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-card sm:mt-8">
           <div className="overflow-x-auto">
             <table className="admin-table">
               <thead>
@@ -192,11 +196,15 @@ export default function AdminCategories() {
                           }}
                         >
                           <EditIcon className="h-3.5 w-3.5" />
-                          {t('admin.edit')}
+                          <span className="hidden sm:inline">{t('admin.edit')}</span>
                         </button>
-                        <button type="button" className="btn btn-danger btn-sm" onClick={() => remove(c)}>
+                        <button
+                          type="button"
+                          className="btn btn-danger btn-sm"
+                          onClick={() => setConfirmTarget(c)}
+                        >
                           <TrashIcon className="h-3.5 w-3.5" />
-                          {t('admin.delete')}
+                          <span className="hidden sm:inline">{t('admin.delete')}</span>
                         </button>
                       </div>
                     </td>
@@ -214,10 +222,24 @@ export default function AdminCategories() {
           onClose={() => setOpen(false)}
           onSaved={() => {
             setOpen(false)
+            setToast({ type: 'success', message: t('admin.saved') })
             load()
           }}
         />
       )}
+
+      {confirmTarget && (
+        <ConfirmDialog
+          message={t('admin.confirmDelete')}
+          onCancel={() => setConfirmTarget(null)}
+          onConfirm={() => {
+            setConfirmTarget(null)
+            remove(confirmTarget)
+          }}
+        />
+      )}
+
+      {toast && <Toast type={toast.type} message={toast.message} onClose={() => setToast(null)} />}
     </div>
   )
 }

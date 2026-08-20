@@ -18,6 +18,7 @@ import AdminCategories from './admin/AdminCategories'
 import AdminBanners from './admin/AdminBanners'
 import AdminPages from './admin/AdminPages'
 import AdminMessages from './admin/AdminMessages'
+import AdminSettings from './admin/AdminSettings'
 
 export default function App() {
   return (
@@ -50,6 +51,7 @@ export default function App() {
           <Route path="banners" element={<AdminBanners />} />
           <Route path="pages" element={<AdminPages />} />
           <Route path="messages" element={<AdminMessages />} />
+          <Route path="settings" element={<AdminSettings />} />
         </Route>
       </Routes>
     </>

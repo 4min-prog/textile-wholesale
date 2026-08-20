@@ -54,7 +54,7 @@ export default function AdminPages() {
         <Spinner />
       ) : (
         <>
-          <div className="mt-6 border border-white/10 bg-card sm:mt-8">
+          <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-card sm:mt-8">
             <div className="overflow-x-auto">
               <table className="admin-table">
                 <thead>
@@ -81,13 +81,13 @@ export default function AdminPages() {
           </div>
 
           {editing && (
-            <div className="mt-6 border border-white/10 bg-card p-5 sm:mt-8 sm:p-6 md:p-8">
+            <div className="mt-6 rounded-2xl border border-white/10 bg-card p-5 sm:mt-8 sm:p-6 md:p-8">
               <h2 className="text-lg text-gold sm:text-xl">
                 {t('admin.editPage')}: <span className="text-text-dim">/{editing.slug}</span>
               </h2>
 
               {error && (
-                <div className="mt-4 border border-red-600/30 bg-red-600/10 px-4 py-3 text-sm text-red-400">
+                <div className="mt-4 rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-400">
                   {error}
                 </div>
               )}
@@ -124,7 +124,7 @@ export default function AdminPages() {
                   <button type="button" className="btn btn-outline-gold" onClick={() => setEditing(null)}>
                     {t('admin.cancel')}
                   </button>
-                  <button type="submit" disabled={saving} className="btn-gold">
+                  <button type="submit" disabled={saving} className="btn btn-gold">
                     {saving ? t('admin.saving') : t('admin.save')}
                   </button>
                 </div>

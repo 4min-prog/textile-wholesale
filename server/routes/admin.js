@@ -1,5 +1,6 @@
 const { Router } = require('express')
 const path = require('path')
+const bcrypt = require('bcryptjs')
 const prisma = require('../lib/prisma')
 const { auth } = require('../lib/auth')
 const upload = require('../lib/upload')
@@ -16,6 +17,28 @@ router.get('/me', async (req, res, next) => {
     })
     if (!admin) return res.status(401).json({ error: 'Unauthorized' })
     res.json(admin)
+  } catch (e) {
+    next(e)
+  }
+})
+
+// ---------- Change password ----------
+router.post('/change-password', async (req, res, next) => {
+  try {
+    const { currentPassword, newPassword } = req.body
+    if (!currentPassword || !newPassword) {
+      return res.status(400).json({ error: 'Current and new password are required' })
+    }
+    if (newPassword.length < 6) {
+      return res.status(400).json({ error: 'New password must be at least 6 characters' })
+    }
+    const admin = await prisma.admin.findUnique({ where: { id: req.adminId } })
+    if (!admin || !bcrypt.compareSync(currentPassword, admin.password)) {
+      return res.status(401).json({ error: 'Current password is incorrect' })
+    }
+    const hash = bcrypt.hashSync(newPassword, 10)
+    await prisma.admin.update({ where: { id: admin.id }, data: { password: hash } })
+    res.json({ ok: true })
   } catch (e) {
     next(e)
   }

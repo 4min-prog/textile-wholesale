@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { NavLink, Outlet, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { api, clearToken } from '../api'
-import { BoxIcon, TagsIcon, ImageIcon, FileIcon, MailIcon, LogOutIcon, MenuIcon, CloseIcon } from '../components/Icons'
+import { BoxIcon, TagsIcon, ImageIcon, FileIcon, MailIcon, LogOutIcon, MenuIcon, CloseIcon, SettingsIcon } from '../components/Icons'
 import LanguageSwitcher from '../components/LanguageSwitcher'
 import type { Admin } from '../types'
 
@@ -93,6 +93,23 @@ export default function AdminLayout() {
               {l.label}
             </NavLink>
           ))}
+
+          <div className="my-3 border-t border-white/10" />
+
+          <NavLink
+            to="/admin/settings"
+            onClick={() => setOpen(false)}
+            className={({ isActive }) =>
+              `flex items-center gap-3 border-l-2 px-4 py-2.5 text-sm font-medium transition-colors sm:py-3 ${
+                isActive
+                  ? 'border-gold bg-gold/10 text-gold'
+                  : 'border-transparent text-white/50 hover:text-white hover:bg-white/5'
+              }`
+            }
+          >
+            <SettingsIcon className="h-5 w-5" />
+            {t('admin.settings')}
+          </NavLink>
         </nav>
 
         <div className="border-t border-white/10 px-6 py-4 sm:py-5">

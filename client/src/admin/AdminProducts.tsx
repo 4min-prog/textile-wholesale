@@ -5,6 +5,8 @@ import type { Category, Product } from '../types'
 import Spinner from '../components/Spinner'
 import { DEFAULT_IMAGE, formatPrice } from '../config'
 import { EditIcon, TrashIcon, CloseIcon } from '../components/Icons'
+import ConfirmDialog from '../components/ConfirmDialog'
+import Toast from '../components/Toast'
 
 interface FormState {
   name_tr: string
@@ -121,8 +123,8 @@ function ProductForm({
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-navy/80 p-4">
-      <div className="max-h-[92vh] w-full max-w-2xl overflow-y-auto border border-white/10 bg-card p-5 sm:p-6 md:p-8">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm">
+      <div className="max-h-[92vh] w-full max-w-2xl overflow-y-auto rounded-2xl border border-white/10 bg-card p-5 shadow-2xl sm:p-6 md:p-8">
         <div className="flex items-center justify-between">
           <h2 className="text-lg text-gold sm:text-xl">{product ? t('admin.editProduct') : t('admin.addProduct')}</h2>
           <button type="button" onClick={onClose} className="text-text-dim hover:text-text" aria-label="Close">
@@ -131,7 +133,7 @@ function ProductForm({
         </div>
 
         {error && (
-          <div className="mt-4 border border-red-600/30 bg-red-600/10 px-4 py-3 text-sm text-red-400">
+          <div className="mt-4 rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-400">
             {error}
           </div>
         )}
@@ -223,18 +225,18 @@ function ProductForm({
             <div className="flex flex-wrap gap-3">
               {form.images.map((img, i) => (
                 <div key={img + i} className="relative">
-                  <img src={img} alt="" className="h-16 w-16 border border-white/10 object-cover sm:h-20 sm:w-20" />
+                  <img src={img} alt="" className="h-16 w-16 rounded-lg border border-white/10 object-cover sm:h-20 sm:w-20" />
                   <button
                     type="button"
                     onClick={() => set('images')(form.images.filter((_, j) => j !== i))}
-                    className="absolute -right-2 -top-2 grid h-5 w-5 place-items-center bg-navy text-text hover:bg-red-600 sm:h-6 sm:w-6"
+                    className="absolute -right-2 -top-2 grid h-5 w-5 place-items-center rounded-full bg-red-500 text-white hover:bg-red-400 sm:h-6 sm:w-6"
                     aria-label="Remove"
                   >
                     <CloseIcon className="h-3 w-3" />
                   </button>
                 </div>
               ))}
-              <label className="grid h-16 w-16 cursor-pointer place-items-center border border-dashed border-white/20 text-gold hover:border-gold sm:h-20 sm:w-20">
+              <label className="grid h-16 w-16 cursor-pointer place-items-center rounded-lg border border-dashed border-white/20 text-gold transition-colors hover:border-gold/50 hover:bg-gold/5 sm:h-20 sm:w-20">
                 {uploading ? (
                   <span className="h-5 w-5 animate-spin rounded-full border-2 border-gold border-t-navy" />
                 ) : (
@@ -249,7 +251,7 @@ function ProductForm({
             <button type="button" onClick={onClose} className="btn btn-outline-gold">
               {t('admin.cancel')}
             </button>
-            <button type="submit" disabled={saving || uploading} className="btn-gold">
+            <button type="submit" disabled={saving || uploading} className="btn btn-gold">
               {saving ? t('admin.saving') : t('admin.save')}
             </button>
           </div>
@@ -267,6 +269,8 @@ export default function AdminProducts() {
   const [loading, setLoading] = useState(true)
   const [open, setOpen] = useState(false)
   const [editing, setEditing] = useState<Product | null>(null)
+  const [confirmTarget, setConfirmTarget] = useState<Product | null>(null)
+  const [toast, setToast] = useState<{ type: 'success' | 'error'; message: string } | null>(null)
 
   const load = () => {
     setLoading(true)
@@ -281,12 +285,12 @@ export default function AdminProducts() {
   useEffect(load, [])
 
   const remove = async (p: Product) => {
-    if (!window.confirm(t('admin.confirmDelete'))) return
     try {
       await api(`/admin/products/${p.id}`, { method: 'DELETE' })
+      setToast({ type: 'success', message: t('admin.deleted') })
       load()
     } catch (err) {
-      window.alert(err instanceof Error ? err.message : 'Error')
+      setToast({ type: 'error', message: err instanceof Error ? err.message : 'Error' })
     }
   }
 
@@ -310,7 +314,7 @@ export default function AdminProducts() {
       })
       load()
     } catch (err) {
-      window.alert(err instanceof Error ? err.message : 'Error')
+      setToast({ type: 'error', message: err instanceof Error ? err.message : 'Error' })
     }
   }
 
@@ -320,7 +324,7 @@ export default function AdminProducts() {
         <h1 className="text-xl text-gold sm:text-2xl md:text-3xl">{t('admin.productsTitle')}</h1>
         <button
           type="button"
-          className="btn-gold"
+          className="btn btn-gold"
           onClick={() => {
             setEditing(null)
             setOpen(true)
@@ -333,7 +337,7 @@ export default function AdminProducts() {
       {loading ? (
         <Spinner />
       ) : (
-        <div className="mt-6 border border-white/10 bg-card sm:mt-8">
+        <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-card sm:mt-8">
           <div className="overflow-x-auto">
             <table className="admin-table">
               <thead>
@@ -354,7 +358,7 @@ export default function AdminProducts() {
                       <img
                         src={p.images[0] || DEFAULT_IMAGE}
                         alt=""
-                        className="h-10 w-10 border border-white/10 object-cover sm:h-12 sm:w-12"
+                        className="h-10 w-10 rounded-lg border border-white/10 object-cover sm:h-12 sm:w-12"
                       />
                     </td>
                     <td className="font-medium text-text">
@@ -366,12 +370,8 @@ export default function AdminProducts() {
                     <td className="font-medium text-gold">{formatPrice(p.price, lng)}</td>
                     <td className="hidden text-text-dim md:table-cell">{p.min_order}</td>
                     <td>
-                      <button
-                        type="button"
-                        onClick={() => toggleActive(p)}
-                        title="Toggle"
-                      >
-                        <span className={`badge ${p.is_active ? 'badge-green' : 'badge-gray'}`}>
+                      <button type="button" onClick={() => toggleActive(p)} title="Toggle">
+                        <span className={`badge rounded-full ${p.is_active ? 'badge-green' : 'badge-gray'}`}>
                           {p.is_active ? t('admin.active') : t('admin.inactive')}
                         </span>
                       </button>
@@ -387,15 +387,15 @@ export default function AdminProducts() {
                           }}
                         >
                           <EditIcon className="h-3.5 w-3.5" />
-                          {t('admin.edit')}
+                          <span className="hidden sm:inline">{t('admin.edit')}</span>
                         </button>
                         <button
                           type="button"
                           className="btn btn-danger btn-sm"
-                          onClick={() => remove(p)}
+                          onClick={() => setConfirmTarget(p)}
                         >
                           <TrashIcon className="h-3.5 w-3.5" />
-                          {t('admin.delete')}
+                          <span className="hidden sm:inline">{t('admin.delete')}</span>
                         </button>
                       </div>
                     </td>
@@ -414,10 +414,24 @@ export default function AdminProducts() {
           onClose={() => setOpen(false)}
           onSaved={() => {
             setOpen(false)
+            setToast({ type: 'success', message: t('admin.saved') })
             load()
           }}
         />
       )}
+
+      {confirmTarget && (
+        <ConfirmDialog
+          message={t('admin.confirmDelete')}
+          onCancel={() => setConfirmTarget(null)}
+          onConfirm={() => {
+            setConfirmTarget(null)
+            remove(confirmTarget)
+          }}
+        />
+      )}
+
+      {toast && <Toast type={toast.type} message={toast.message} onClose={() => setToast(null)} />}
     </div>
   )
 }
